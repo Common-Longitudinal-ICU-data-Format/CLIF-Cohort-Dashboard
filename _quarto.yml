@@ -1,0 +1,14 @@
+project:
+  type: website
+  output-dir: docs
+
+# website:
+#   navbar:
+#     background: primary
+#     search: true
+
+format:
+  html:
+    theme: sandstone
+    css: styles.css
+    toc: true 

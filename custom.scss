@@ -1,0 +1,82 @@
+/*-- scss:defaults --*/
+$primary: #983232;
+$body-bg: #f8f9fa;
+$navbar-bg: $primary;
+$navbar-fg: white;
+$card-cap-bg: rgba($primary, 0.03);
+$card-border-color: rgba($primary, 0.125);
+$grid-gutter-width: 1rem;
+
+/*-- scss:rules --*/
+.navbar {
+  background: linear-gradient(45deg, darken($primary, 10%), $primary);
+}
+
+.navbar-title {
+  font-weight: 600;
+}
+
+.card {
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  
+  .card-header {
+    font-weight: 600;
+    color: $primary;
+    border-bottom: 1px solid $card-border-color;
+    background: $card-cap-bg;
+    padding: 1rem;
+  }
+  
+  .card-body {
+    padding: 1rem;
+  }
+}
+
+h4 {
+  color: $primary;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.grid {
+  gap: $grid-gutter-width;
+}
+
+.g-col-3, .g-col-4, .g-col-6 {
+  background: white;
+  padding: 1rem;
+  border-radius: 6px;
+  border: 1px solid $card-border-color;
+  
+  &:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+  }
+}
+
+.card-title {
+  color: $primary;
+  font-weight: 600;
+}
+
+.navbar {
+  .nav-link {
+    color: rgba(255, 255, 255, 0.9);
+    
+    &:hover {
+      color: white;
+    }
+  }
+}
+
+.content {
+  padding: 1rem;
+}
+
+// Add margin utilities
+.mt-3 {
+  margin-top: 1rem !important;
+} 

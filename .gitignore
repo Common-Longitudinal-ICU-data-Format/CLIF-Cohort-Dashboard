@@ -1,0 +1,12 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+.DS_Store
+.quarto/
+/_site/
+/.quarto/
+*_cache/
+/docs/
+*.html
+*.pdf

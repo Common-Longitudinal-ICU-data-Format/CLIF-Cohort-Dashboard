@@ -1,0 +1,186 @@
+---
+title: "CLIF Cohort Dashboard"
+format: 
+  dashboard:
+    theme: custom.scss
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(leaflet)
+library(htmltools)
+
+# Read site data and fix coordinates
+sites <- read.csv("data/site_details.csv", stringsAsFactors = FALSE) %>%
+  mutate(
+    # Replace en dash with regular minus sign and convert to numeric
+    Longitude = as.numeric(str_replace(Longitude, "−", "-")),
+    Latitude = as.numeric(Latitude)
+  )
+
+# Create marker icons using Font Awesome
+icons <- awesomeIconList(
+  ready = makeAwesomeIcon(
+    icon = "check",
+    markerColor = "green",
+    iconColor = "white",
+    library = "fa"
+  ),
+  pending = makeAwesomeIcon(
+    icon = "clock",
+    markerColor = "orange",
+    iconColor = "white",
+    library = "fa"
+  )
+)
+
+# Add icon type to the data
+sites$icon_type <- ifelse(sites$Data.Ready == "Yes", "ready", "pending")
+```
+
+# Home {orientation="columns"}
+
+## Left Column {width=55%}
+### Row {height=50%}
+#### Map
+::: {.card}
+```{r map}
+#| out.width: "100%"
+#| out.height: "400px"
+
+# Create the map
+leaflet(sites) %>%
+  addProviderTiles(providers$CartoDB.Positron) %>%  # Use a clean map style
+  setView(lng = -98.5795, lat = 39.8283, zoom = 4) %>%  # Center on US
+  addAwesomeMarkers(
+    ~Longitude, ~Latitude,
+    icon = ~icons[icon_type],
+    popup = ~paste0(
+      "<b>", Site, "</b><br>",
+      "Location: ", `City..State.Province`, "<br>",
+      "Status: ", if_else(Data.Ready == "Yes", 
+                         "<span style='color: green;'>Ready</span>", 
+                         "<span style='color: orange;'>Pending</span>")
+    ),
+    label = ~Site,
+    clusterOptions = markerClusterOptions()  # Add clustering for overlapping markers
+  ) %>%
+  addLegend(
+    position = "bottomright",
+    colors = c("#4DAF4A", "#FF7F00"),  # Green and orange colors
+    labels = c("Ready", "Pending"),
+    title = "Site Status"
+  )
+```
+:::
+
+### Row {height=50%}
+#### IMV Details
+::: {.card}
+::: {.card-header}
+IMV Details
+:::
+::: {.card-body}
+::: {.grid}
+::: {.g-col-4}
+##### Total IMV encounters
+Location of intubation
+:::
+::: {.g-col-4}
+##### Total IMV encounters
+Initial mode
+:::
+::: {.g-col-4}
+##### Ventilator settings
+[Settings details]
+:::
+:::
+:::
+:::
+
+## Right Column {width=45%}
+### Overview
+::: {.card}
+::: {.card-header}
+Overview
+:::
+::: {.card-body}
+::: {.grid}
+::: {.g-col-4}
+#### Total encounters
+[Value]
+:::
+::: {.g-col-4}
+#### Total patients
+[Value]
+:::
+::: {.g-col-4}
+#### Years
+[Value]
+:::
+:::
+
+::: {.grid .mt-3}
+::: {.g-col-6}
+#### Hospitals
+[Value]
+:::
+::: {.g-col-6}
+#### Hospital Day
+[Value]
+:::
+:::
+:::
+:::
+
+### Demographics
+::: {.card}
+::: {.card-header}
+Demographics
+:::
+::: {.card-body}
+::: {.grid}
+::: {.g-col-4}
+#### Female
+[Percentage]
+:::
+::: {.g-col-4}
+#### Race
+[Distribution]
+:::
+::: {.g-col-4}
+#### Hispanic
+[Percentage]
+:::
+:::
+:::
+:::
+
+### Clinical Outcomes
+::: {.card}
+::: {.card-header}
+Clinical Outcomes
+:::
+::: {.card-body}
+::: {.grid}
+::: {.g-col-3}
+#### Mortality
+[Metrics]
+:::
+::: {.g-col-3}
+#### SOFA
+[Scores]
+:::
+::: {.g-col-6}
+#### Vasopressor details
+[Details]
+:::
+:::
+:::
+:::
+
+# Site Details
+[This page will show when a specific site is selected]
+
+# About
+[Information about the CLIF cohort study]
