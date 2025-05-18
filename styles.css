@@ -146,4 +146,41 @@ main {
   .content {
     padding: 2vh 4vw;
   }
+}
+
+.metric-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1rem;
+}
+
+.metric-icon {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 1rem;
+}
+
+.metric-value {
+  font-size: 2.5rem;
+  font-weight: bold;
+  line-height: 1.2;
+  margin: 0.5rem 0;
+}
+
+.metric-label {
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 0.25rem;
+}
+
+.years-value {
+  color: #C8A9A9;
+}
+
+.days-unit {
+  font-size: 1rem;
+  color: #666;
+  margin-left: 0.25rem;
 } 

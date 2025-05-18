@@ -9,6 +9,7 @@ format:
 library(tidyverse)
 library(leaflet)
 library(htmltools)
+library(knitr)
 
 # Read site data and fix coordinates
 sites <- read.csv("data/site_details.csv", stringsAsFactors = FALSE) %>%
@@ -17,6 +18,9 @@ sites <- read.csv("data/site_details.csv", stringsAsFactors = FALSE) %>%
     Longitude = as.numeric(str_replace(Longitude, "−", "-")),
     Latitude = as.numeric(Latitude)
   )
+
+# Read metrics data
+metrics <- read.csv("data/metrics_data.csv", stringsAsFactors = FALSE)
 
 # Create marker icons using Font Awesome
 icons <- awesomeIconList(
@@ -36,151 +40,657 @@ icons <- awesomeIconList(
 
 # Add icon type to the data
 sites$icon_type <- ifelse(sites$Data.Ready == "Yes", "ready", "pending")
+
+# Helper function to get metric value and format
+get_metric_with_format <- function(metric_name) {
+  metrics %>% 
+    filter(Site == "Consortium Aggregate", Metric == metric_name) %>% 
+    select(Value, Display_Format) %>% 
+    head(1)
+}
+
+# Helper function to format numbers with commas
+format_number <- function(value) {
+  format(as.numeric(gsub("[^0-9]", "", value)), big.mark=",")
+}
+
+# Helper function to get metric value
+get_metric <- function(metric_name) {
+  metrics %>% 
+    filter(Site == "Consortium Aggregate", Metric == metric_name) %>% 
+    pull(Value)
+}
+
+# Helper function to format large numbers
+format_large_number <- function(value) {
+  format(as.numeric(gsub("[^0-9]", "", value)), big.mark=",")
+}
+
+# Helper function to format median [Q1,Q3] values
+format_median_iqr <- function(metric_name, show_iqr = FALSE) {
+  metric_data <- get_metric_with_format(metric_name)
+  value <- metric_data$Value
+  format <- metric_data$Display_Format
+  
+  if(is.na(value) || value == "") return("N/A")
+  
+  # Extract numbers using regex
+  numbers <- str_extract_all(value, "\\d+\\.?\\d*")[[1]]
+  if(length(numbers) >= 3) {
+    median <- as.numeric(numbers[1])
+    q1 <- as.numeric(numbers[2])
+    q3 <- as.numeric(numbers[3])
+    
+    if(show_iqr) {
+      return(sprintf("%.1f [%.1f, %.1f]", median, q1, q3))
+    } else {
+      return(sprintf("%.1f", median))
+    }
+  }
+  return(value)
+}
+
+# Helper function to format n (%) values
+format_percentage <- function(metric_name, show_n = FALSE) {
+  metric_data <- get_metric_with_format(metric_name)
+  value <- metric_data$Value
+  format <- metric_data$Display_Format
+  
+  if(is.na(value) || value == "") return("N/A")
+  
+  # Extract numbers using regex
+  n_match <- str_extract(value, "\\d+(?=\\s*\\()")  # Get number before parentheses
+  pct_match <- str_extract(value, "\\d+\\.?\\d*(?=%\\))")  # Get percentage
+  
+  if(!is.na(pct_match)) {
+    if(show_n && !is.na(n_match)) {
+      return(sprintf("%s (%s%%)", format_large_number(n_match), pct_match))
+    } else {
+      return(sprintf("%s%%", pct_match))
+    }
+  }
+  return(value)
+}
 ```
 
-# Home {orientation="columns"}
+# Home
 
-## Left Column {width=55%}
-### Row {height=50%}
-#### Map
-::: {.card}
+## Row {.no-padding .g-0}
+```{=html}
+<style>
+.no-padding {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.g-0 {
+  --bs-gutter-x: 0 !important;
+  --bs-gutter-y: 0 !important;
+}
+
+.top-stats {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  width: 100vw;
+  margin: 0;
+  padding: 1rem;
+  background: white;
+  justify-content: space-between;
+}
+
+.stat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  background: transparent;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  flex: 1;
+  min-width: 120px;
+}
+
+.stat-icon {
+  width: 24px;
+  height: 24px;
+  margin-bottom: 0.5rem;
+  opacity: 0.7;
+}
+
+.stat-label {
+  color: #983232;
+  font-size: 0.8rem;
+  opacity: 0.7;
+  text-align: center;
+  margin-bottom: 0.25rem;
+  white-space: nowrap;
+}
+
+.stat-value {
+  color: #983232;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Tablet Styles */
+@media screen and (max-width: 1024px) {
+  .top-stats {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  
+  .stat-card {
+    flex: 1 1 calc(25% - 0.75rem);
+    min-width: calc(25% - 0.75rem);
+  }
+}
+
+/* Mobile Styles */
+@media screen and (max-width: 768px) {
+  .top-stats {
+    gap: 0.35rem;
+    padding: 0.5rem;
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .stat-card {
+    flex: 0 1 calc(33.33% - 0.35rem);
+    min-width: calc(33.33% - 0.35rem);
+    padding: 0.5rem;
+    margin-bottom: 0.35rem;
+  }
+  
+  .stat-icon {
+    width: 18px;
+    height: 18px;
+    margin-bottom: 0.25rem;
+  }
+  
+  .stat-label {
+    font-size: 0.7rem;
+    line-height: 1.2;
+    margin-bottom: 0.15rem;
+  }
+  
+  .stat-value {
+    font-size: 1.1rem;
+    line-height: 1.2;
+  }
+}
+
+/* Small Mobile Styles */
+@media screen and (max-width: 480px) {
+  .top-stats {
+    padding: 0.35rem;
+    gap: 0.25rem;
+  }
+  
+  .stat-card {
+    flex: 0 1 calc(50% - 0.25rem);
+    min-width: calc(50% - 0.25rem);
+    padding: 0.35rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  .stat-icon {
+    width: 16px;
+    height: 16px;
+    margin-bottom: 0.15rem;
+  }
+  
+  .stat-label {
+    font-size: 0.65rem;
+    margin-bottom: 0.1rem;
+  }
+  
+  .stat-value {
+    font-size: 1rem;
+  }
+}
+
+.stat-card.encounters {
+  display: flex;
+  flex-direction: column;
+}
+
+.encounters .number-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  order: 2;
+}
+
+.encounters .stat-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin: 0;
+}
+
+.encounters .stat-label {
+  order: 1;
+}
+
+.encounters .stat-value {
+  margin: 0;
+}
+
+.stat-card.with-icon {
+  display: flex;
+  flex-direction: column;
+}
+
+.with-icon .value-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.with-icon .stat-icon {
+  margin-right: 0.5rem;
+}
+
+.with-icon .stat-value {
+  flex: 1;
+  text-align: left;
+}
+
+.stat-card.hospital {
+  text-align: left;
+  padding: 1rem;
+}
+
+.hospital .stat-label {
+  text-align: left;
+  margin-bottom: 0.5rem;
+}
+
+.hospital .value-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.hospital .stat-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.hospital .stat-value {
+  text-align: left;
+  font-size: 2rem;
+}
+</style>
+
+<div class="top-stats">
+  <div class="stat-card">
+    <img src="icons/encounters.svg" class="stat-icon" alt="encounters">
+    <div class="stat-label">Total ICU Encounters</div>
+    <div class="stat-value">`r format_large_number(get_metric("N: ICU encounters"))`</div>
+  </div>
+  
+  <div class="stat-card">
+    <img src="icons/patients.svg" class="stat-icon" alt="patients">
+    <div class="stat-label">Patients</div>
+    <div class="stat-value">`r format_large_number(get_metric("N: Unique patients"))`</div>
+  </div>
+  
+  <div class="stat-card">
+    <img src="icons/years.svg" class="stat-icon" alt="years">
+    <div class="stat-label">Years</div>
+    <div class="stat-value">`r get_metric("Years")`</div>
+  </div>
+  
+  <div class="stat-card">
+    <img src="icons/hospitals.svg" class="stat-icon" alt="hospitals">
+    <div class="stat-label">Hospitals</div>
+    <div class="stat-value">`r format_large_number(get_metric("Hospitals "))`</div>
+  </div>
+  
+  <div class="stat-card">
+    <img src="icons/days.svg" class="stat-icon" alt="days">
+    <div class="stat-label">Hospital Length of Stay (days)</div>
+    <div class="stat-value">`r format_median_iqr("Total hospital days, median [Q1,Q3]")`</div>
+  </div>
+  
+  <div class="stat-card">
+    <img src="icons/sex.svg" class="stat-icon" alt="female">
+    <div class="stat-label">Female</div>
+    <div class="stat-value">`r format_percentage("Sex n (%): Female")`</div>
+  </div>
+  
+  <div class="stat-card">
+    <img src="icons/race.svg" class="stat-icon" alt="race">
+    <div class="stat-label">White</div>
+    <div class="stat-value">61.5%</div>
+  </div>
+  
+  <div class="stat-card">
+    <img src="icons/hispanic.svg" class="stat-icon" alt="hispanic">
+    <div class="stat-label">Hispanic</div>
+    <div class="stat-value">`r format_percentage("Ethnicity n (%): Hispanic")`</div>
+  </div>
+
+  <div class="stat-card">
+    <img src="icons/mortality.svg" class="stat-icon" alt="hispanic">
+    <div class="stat-label">Mortality</div>
+    <div class="stat-value">`r format_percentage("Hospital mortality n (%)")`</div>
+  </div>
+
+  <div class="stat-card">
+    <img src="icons/sofa.svg" class="stat-icon" alt="sofa">
+    <div class="stat-label">SOFA Median</div>
+    <div class="stat-value">`r format_median_iqr("SOFA-97 TOTAL, median [Q1,Q3]")`</div>
+  </div>
+</div>
+```
+
+## Row {.mt-3}
+### Map {width=70%}
 ```{r map}
 #| out.width: "100%"
-#| out.height: "400px"
+#| out.height: "500px"
 
-# Create the map
 leaflet(sites) %>%
-  addProviderTiles(providers$CartoDB.Positron) %>%  # Use a clean map style
-  setView(lng = -98.5795, lat = 39.8283, zoom = 4) %>%  # Center on US
+  addProviderTiles(providers$CartoDB.Positron) %>%
+  setView(lng = -98.5795, lat = 39.8283, zoom = 4) %>%
   addAwesomeMarkers(
     ~Longitude, ~Latitude,
     icon = ~icons[icon_type],
     popup = ~paste0(
       "<b>", Site, "</b><br>",
       "Location: ", `City..State.Province`, "<br>",
+      "Hospitals: ", `Hospitals`, "<br>",
+      "Total ICU Encounters: ", `Encounters`, "<br>",
+      "Total Patients: ", `Patients`, "<br>",
       "Status: ", if_else(Data.Ready == "Yes", 
                          "<span style='color: green;'>Ready</span>", 
                          "<span style='color: orange;'>Pending</span>")
+                   
     ),
     label = ~Site,
-    clusterOptions = markerClusterOptions()  # Add clustering for overlapping markers
+    clusterOptions = markerClusterOptions()
   ) %>%
   addLegend(
     position = "bottomright",
-    colors = c("#4DAF4A", "#FF7F00"),  # Green and orange colors
+    colors = c("#4DAF4A", "#FF7F00"),
     labels = c("Ready", "Pending"),
     title = "Site Status"
   )
 ```
+
+### Details {.tabset width=30%}
+
+#### IMV Encounters
+::: {.mb-8}
+<div class="stat-card" style="margin-bottom: 1rem; background: transparent;">
+  <img src="icons/vent.svg" alt="vasopressor" style="width: 90px; height: 64px;">
+  <div class="stat-value" style="margin-bottom: 1rem;">`r format_percentage("IMV encounters n (%)")`</div>
+  <div class="stat-label" >Encounters received mechanical ventilation</div>
+</div>
+
+<div style="height: auto; margin-top: 1rem;">
+```{r imv-locations}
+library(plotly)
+
+# Create data frame for the chart
+locations <- data.frame(
+  Location = c("ICU", "ED", "Procedural", "Ward", "Other"),
+  Count = c(230002, 42526, 16986, 12999, 4154),
+  Percentage = c(75.0, 13.9, 5.5, 4.2, 1.4)
+)
+
+# Create custom color palette - adjusted to match image
+colors <- c("#983232", "#B25959", "#CC8080", "#E6A6A6", "#FFD9D9")
+
+# Create the donut chart
+plot_ly(locations, labels = ~Location, values = ~Percentage, type = 'pie',
+        hole = 0.6,
+        marker = list(colors = colors),
+        textposition = 'outside',
+        textinfo = 'label+percent',
+        hovertemplate = paste0(
+          "%{label}<br>",
+          "Count: %{customdata:,.0f}<br>",
+          "Percentage: %{percent}<br>",
+          "<extra></extra>"
+        ),
+        customdata = ~Count) %>%
+  layout(
+    showlegend = FALSE,
+    title = list(
+      text = "First Location of Intubation",
+      y = 0.95,
+      x = 0.5,
+      xanchor = 'center',
+      yanchor = 'top',
+      font = list(
+        color = '#983232',
+        size = 16,
+        family = "Inter"
+      )
+    ),
+    paper_bgcolor = 'rgba(0,0,0,0)',
+    plot_bgcolor = 'rgba(0,0,0,0)',
+    margin = list(t = 60, l = 20, r = 20, b = 20),
+    autosize = TRUE,
+    # Make it a semi-circle
+    polar = list(
+      sector = c(0, 180)
+    ),
+    # Adjust the chart domain to show full semi-circle
+    xaxis = list(domain = c(0.1, 0.9)),
+    yaxis = list(domain = c(0, 0.95))
+  )
+```
+</div>
 :::
 
-### Row {height=50%}
-#### IMV Details
-::: {.card}
-::: {.card-header}
-IMV Details
-:::
-::: {.card-body}
-::: {.grid}
-::: {.g-col-4}
-##### Total IMV encounters
-Location of intubation
-:::
-::: {.g-col-4}
-##### Total IMV encounters
-Initial mode
-:::
-::: {.g-col-4}
-##### Ventilator settings
-[Settings details]
-:::
-:::
-:::
+#### Ventilator Settings {.tabset}
+
+##### Initial Mode of Ventilation
+
+```{r vent-modes}
+library(plotly)
+
+# Create data frame for ventilation modes
+vent_modes <- data.frame(
+  Mode = c("Assist Control-Volume Control", 
+           "Pressure-Regulated Volume Control",
+           "SIMV",
+           "Pressure support/CPAP",
+           "Pressure Control",
+           "Volume Support",
+           "Other"),
+  Count = c(183708, 39011, 32647, 21700, 7851, 79, 22046),
+  Percentage = c(59.9, 12.7, 10.6, 7.1, 2.5, 0.0, 7.2)
+)
+
+# Sort by percentage in descending order
+vent_modes <- vent_modes[order(-vent_modes$Percentage),]
+
+# Create a color palette - using more distinct shades
+colors <- c('#983232', '#CC8080', '#E6A6A6', '#B25959', '#FFB3B3', '#FFCCCC', '#FFE6E6')
+
+# Create the vertical bar plot
+plot_ly() %>%
+  add_trace(
+    data = vent_modes,
+    x = ~seq_along(Mode),
+    y = ~Percentage,
+    type = 'bar',
+    name = ~Mode,
+    marker = list(color = colors),
+    text = ~paste0(sprintf("%.1f", Percentage), "%"),
+    textposition = 'outside',
+    hovertemplate = paste0(
+      "<b>%{data.name}</b><br>",
+      "Count: %{customdata:,.0f}<br>",
+      "Percentage: %{y:.1f}%<br>",
+      "<extra></extra>"
+    ),
+    customdata = ~Count
+  ) %>%
+  layout(
+    title = list(
+      text = "Initial Mode of Ventilation",
+      font = list(
+        color = '#983232',
+        size = 16,
+        family = "Inter"
+      ),
+      y = 0.95
+    ),
+    yaxis = list(
+      title = "Percentage of Encounters (%)",
+      showgrid = TRUE,
+      gridcolor = '#E5E5E5',
+      zeroline = FALSE,
+      range = c(0, max(vent_modes$Percentage) * 1.2)
+    ),
+    xaxis = list(
+      title = "",
+      showticklabels = FALSE,
+      showgrid = FALSE
+    ),
+    paper_bgcolor = 'rgba(0,0,0,0)',
+    plot_bgcolor = 'rgba(0,0,0,0)',
+    margin = list(l = 50, r = 20, t = 50, b = 100),
+    legend = list(
+      orientation = "h",
+      xanchor = "center",
+      x = 0.5,
+      y = -0.2,
+      yanchor = "top",
+      bgcolor = 'rgba(255, 255, 255, 0.9)',
+      bordercolor = 'rgba(152, 50, 50, 0.2)',
+      borderwidth = 1,
+      font = list(size = 11),
+      traceorder = "normal"
+    ),
+    showlegend = TRUE,
+    font = list(family = "Inter"),
+    bargap = 0.4,
+    height = 400,
+    autosize = TRUE
+  )
+```
+
+##### Initial Settings
+
+```{r vent-settings-table}
+library(knitr)
+library(kableExtra)
+
+# Create data frame for ventilator settings
+vent_settings <- data.frame(
+  Setting = c("FiO2", "PEEP", "Respiratory rate", "Tidal Volume"),
+  `Median [IQR]` = c(
+    "0.4 [0.3,0.6]",
+    "5.0 [5.0,8.0]",
+    "16.0 [12.0,21.0]",
+    "450.0 [380.0,500.0]"
+  )
+)
+
+kable(vent_settings, 
+      format = "html",
+      escape = FALSE,
+      align = c("l", "l"),
+      col.names = c("Setting", "Median [IQR]")) %>%
+  kable_styling(bootstrap_options = "condensed",
+                full_width = TRUE,
+                position = "left",
+                font_size = 14) %>%
+  row_spec(0, bold = TRUE) %>%
+  row_spec(seq(1,4,2), background = "#f8f9fa")
+```
+
+<div style="color: #666; font-size: 0.8rem; margin-top: 1rem;">
+Units: FiO2 (fraction), PEEP (cmH2O), Respiratory rate (breaths/min), Tidal Volume (mL)
+</div>
+
+#### Vasopressors
+
+::: {.mb-5}
+<div class="stat-card" style="margin-bottom: 2rem; background: transparent;">
+  <img src="icons/vasopressors.svg" alt="vasopressor" style="width: 64px; height: 64px;">
+  <div class="stat-value">`r format_percentage("Vasopressor encounters n (%)")`</div>
+  <div class="stat-label">Encounters received Vasopressors</div>
+</div>
+
+```{r vasopressor-table}
+library(knitr)
+library(kableExtra)
+
+# Create data frame directly with just the medications and their values
+vasopressor_data <- data.frame(
+  Medication = c("Phenylephrine", "Norepinephrine", "Vasopressin", "Angiotensin", 
+                "Dopamine", "Epinephrine"),
+  `Median [IQR]` = c(
+    get_metric("Phenylephrine dose, median [Q1,Q3]"),
+    get_metric("Norepinephrine dose, median [Q1,Q3]"),
+    get_metric("Vasopressin dose, median [Q1,Q3]"),
+    get_metric("Angiotensin dose, median [Q1,Q3]"),
+    get_metric("Dopamine dose, median [Q1,Q3]"),
+    get_metric("Epinephrine dose, median [Q1,Q3]")
+  )
+)
+
+kable(vasopressor_data, 
+      format = "html",
+      escape = FALSE,
+      align = c("l", "l"),
+      col.names = c("Medication", "Median [IQR]")) %>%
+  kable_styling(bootstrap_options = "condensed",
+                full_width = FALSE,
+                position = "left",
+                font_size = 13) %>%
+  column_spec(1, width = "150px") %>%
+  column_spec(2, width = "150px") %>%
+  row_spec(0, bold = TRUE) %>%
+  row_spec(seq(1,6,2), background = "#f8f9fa")
+```
+
+<div style="color: #666; font-size: 0.8rem; margin-top: 1rem;">
+The unit of measurement for all medications presented here is mcg/kg/min, except vasopressin, for which we use units/min
+</div>
 :::
 
-## Right Column {width=45%}
-### Overview
-::: {.card}
-::: {.card-header}
-Overview
-:::
-::: {.card-body}
-::: {.grid}
-::: {.g-col-4}
-#### Total encounters
-[Value]
-:::
-::: {.g-col-4}
-#### Total patients
-[Value]
-:::
-::: {.g-col-4}
-#### Years
-[Value]
-:::
-:::
+# Data
 
-::: {.grid .mt-3}
-::: {.g-col-6}
-#### Hospitals
-[Value]
-:::
-::: {.g-col-6}
-#### Hospital Day
-[Value]
-:::
-:::
-:::
-:::
+```{r site-data-table}
+#| warning: false
+library(DT)
 
-### Demographics
-::: {.card}
-::: {.card-header}
-Demographics
-:::
-::: {.card-body}
-::: {.grid}
-::: {.g-col-4}
-#### Female
-[Percentage]
-:::
-::: {.g-col-4}
-#### Race
-[Distribution]
-:::
-::: {.g-col-4}
-#### Hispanic
-[Percentage]
-:::
-:::
-:::
-:::
+# Read the full dataset
+site_data <- read.csv("data/final_website_data.csv", check.names = FALSE)
 
-### Clinical Outcomes
-::: {.card}
-::: {.card-header}
-Clinical Outcomes
-:::
-::: {.card-body}
-::: {.grid}
-::: {.g-col-3}
-#### Mortality
-[Metrics]
-:::
-::: {.g-col-3}
-#### SOFA
-[Scores]
-:::
-::: {.g-col-6}
-#### Vasopressor details
-[Details]
-:::
-:::
-:::
-:::
+# Create an interactive table
+datatable(site_data,
+          options = list(
+            pageLength = 15,
+            scrollX = TRUE,
+            dom = 'Bfrtip',
+            buttons = c('copy', 'csv', 'excel'),
+            initComplete = JS(
+              "function(settings, json) {",
+              "$(this.api().table().header()).css({'background-color': '#f8f9fa', 'color': '#983232'});",
+              "}"
+            )
+          ),
+          class = 'cell-border stripe',
+          rownames = FALSE,
+          filter = 'top',
+          extensions = c('Buttons', 'FixedHeader'),
+          style = 'bootstrap') %>%
+  formatStyle(names(site_data),
+             backgroundColor = '#ffffff',
+             borderBottom = '1px solid #ddd')
+```
 
-# Site Details
-[This page will show when a specific site is selected]
-
-# About
-[Information about the CLIF cohort study]
+The table above shows the complete dataset used to construct this dashboard. Currently there are eleven health systems within the CLIF consortium. We also have a pipeline from MIMIC-IV to CLIF. The distribution of MIMIC'ed CLIF is also represented above.
