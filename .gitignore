@@ -8,5 +8,6 @@
 /.quarto/
 *_cache/
 # /docs/  # Commenting out docs since we need it for GitHub Pages
-*.html
+/*.html
+!docs/*.html
 *.pdf
