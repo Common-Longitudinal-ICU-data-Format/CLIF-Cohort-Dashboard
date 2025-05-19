@@ -428,7 +428,7 @@ leaflet(sites) %>%
 #### IMV Encounters
 ::: {.mb-8}
 <div class="stat-card" style="margin-bottom: 1rem; background: transparent;">
-  <img src="icons/vent.svg" alt="vasopressor" style="width: 90px; height: 64px;">
+  <img src="icons/vent.svg" alt="vent" style="width: 90px; height: 64px;">
   <div class="stat-value" style="margin-bottom: 1rem;">`r format_percentage("IMV encounters n (%)")`</div>
   <div class="stat-label" >Encounters received mechanical ventilation</div>
 </div>
@@ -693,4 +693,4 @@ datatable(site_data,
              borderBottom = '1px solid #ddd')
 ```
 
-The table above shows the complete dataset used to construct this dashboard. Currently there are eleven health systems within the CLIF consortium. We also have a pipeline from MIMIC-IV to CLIF. The distribution of MIMIC'ed CLIF is also represented above.
+The table above shows the complete dataset used to construct this dashboard. Currently there are eleven health systems within the CLIF consortium. We also have a pipeline from MIMIC-IV to CLIF. The distribution of CLIF'ed  is also represented above.
