@@ -1,6 +1,6 @@
 ﻿Site,Metric,Value,Display_Format
 Consortium Aggregate,Years,2011-2024,text
-Consortium Aggregate,Hospitals ,48,number
+Consortium Aggregate,Hospitals ,46,number
 Consortium Aggregate,N: ICU encounters,862400,number
 Consortium Aggregate,N: Unique patients,680158,number
 Consortium Aggregate,Sex n (%): Female,306200 (45.0%),text
@@ -359,7 +359,47 @@ University of Michigan,Peep,"5.00 [5.00,10.00]",text
 University of Michigan,FiO2,"0.40 [0.30,0.70]",text
 University of Michigan,Respiratory rate,"16.00 [14.00,20.00]",text
 University of Michigan,Tidal Volume,"450.00 [365.00,500.00]",text
-University of Minnesota,Years,2017-2024,text
+University of Minnesota,Years,2011-2024,text
+University of Minnesota,Hospitals ,11,number
+University of Minnesota,N: ICU encounters,144747,number
+University of Minnesota,N: Unique patients,104910,number
+University of Minnesota,Sex n (%): Female,48888 (46.6%),text
+University of Minnesota,Race n (%): Black,6366 (6.1%),text
+University of Minnesota,Race n (%): White,88633 (84.5%),text
+University of Minnesota,Race n (%): Other,9911(10.6%),text
+University of Minnesota,Ethnicity n (%): Hispanic,1651 (1.6%),text
+University of Minnesota,"Total hospital days, median [Q1,Q3]","5.1 [2.7,10.2]",text
+University of Minnesota,"Total ICU days, median [Q1,Q3]","1.5 [0.8,2.9]",text
+University of Minnesota,Hospital mortality n (%),17759 (12.3%),text
+University of Minnesota,"SOFA-97 TOTAL, median [Q1,Q3]","3.0 [1.0,5.0]",text
+University of Minnesota,Vasopressor encounters n (%),47353.0 (32.7%),text
+University of Minnesota,"Phenylephrine dose, median [Q1,Q3]","0.37 [0.10,0.89]",text
+University of Minnesota,"Norepinephrine dose, median [Q1,Q3]","0.05 [0.02,0.13]",text
+University of Minnesota,"Vasopressin dose, median [Q1,Q3]","0.04 [0.02,0.04]",text
+University of Minnesota,"Angiotensin dose, median [Q1,Q3]","0.03 [0.01,0.04]",text
+University of Minnesota,"Dopamine dose, median [Q1,Q3]","4.00 [1.50,8.00]",text
+University of Minnesota,"Epinephrine dose, median [Q1,Q3]","0.03 [0.01,0.06]",text
+University of Minnesota,IMV encounters n (%),46932 (32.4%),text
+University of Minnesota,First location of intubation n(%),,
+University of Minnesota,ICU,38258 (81.5%),text
+University of Minnesota,ED,5117 (10.9%),text
+University of Minnesota,Procedural,3110 (6.6%),text
+University of Minnesota,Ward,306 (0.7%),text
+University of Minnesota,Other,141(0.3%),text
+University of Minnesota,Initial Mode of IMV n(%),,
+University of Minnesota,Assist Control-Volume Control,41646 (88.7%),text
+University of Minnesota,Pressure-Regulated Volume Control,397 (0.8%),text
+University of Minnesota,SIMV,2366 (5.0%),text
+University of Minnesota,Pressure support/CPAP,1024 (2.2%),text
+University of Minnesota,Pressure Control,479 (1.0%),text
+University of Minnesota,Volume Support,,text
+University of Minnesota,Other,1020(2.17%),text
+University of Minnesota,"Ventilator settings Median [Q1, Q2]",,
+University of Minnesota,Peep,"5.00 [5.00,8.00]",text
+University of Minnesota,FiO2,"0.40 [0.27,0.53]",text
+University of Minnesota,Respiratory rate,"16.00 [12.00,18.00]",text
+University of Minnesota,Tidal Volume,"500.00 [400.00,550.00]",text
+University of Pennsylvania,Years,2017-2024,text
 University of Pennsylvania,Hospitals ,6,number
 University of Pennsylvania,N: ICU encounters,125249,number
 University of Pennsylvania,N: Unique patients,97933,number
@@ -399,8 +439,8 @@ University of Pennsylvania,Peep,"5.00 [5.00,8.00]",text
 University of Pennsylvania,FiO2,"0.40 [0.35,0.60]",text
 University of Pennsylvania,Respiratory rate,"19.00 [14.75,25.00]",text
 University of Pennsylvania,Tidal Volume,"450.00 [400.00,500.00]",text
-University of Toronto,Years,2013-2021,text
-University of Toronto,Hospitals ,3,number
+University of Toronto,Years,2017-2021,text
+University of Toronto,Hospitals ,1,number
 University of Toronto,N: ICU encounters,13259,number
 University of Toronto,N: Unique patients,12658,number
 University of Toronto,Sex n (%): Female,4266 (33.7%),text

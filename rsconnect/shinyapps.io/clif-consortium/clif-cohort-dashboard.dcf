@@ -1,0 +1,10 @@
+name: clif-cohort-dashboard
+title:
+username: clif-consortium
+account: clif-consortium
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 14784229
+bundleId: 10333067
+url: https://clif-consortium.shinyapps.io/clif-cohort-dashboard/
+version: 1

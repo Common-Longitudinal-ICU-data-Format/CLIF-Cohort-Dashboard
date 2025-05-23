@@ -1,15 +1,16 @@
-﻿Site,"City, State/Province",Latitude,Longitude,Data Ready,Hospitals,Encounters,Patients
-Emory University,"Atlanta, GA",33.793,−84.3234,Yes,4,121782,93718
-Johns Hopkins University,"Baltimore, MD",39.3299,−76.6205,Yes,5,104641,85982
-Northwestern University,"Chicago, IL",41.8963,−87.6193,Yes,8,105721,85003
-Oregon Health & Science University,"Portland, OR",45.5051,−122.6750,Yes,2,63357,53527
-Rush University,"Chicago, IL",41.8721,−87.6278,Yes,1,50440,36637
-"University of California, San Francisco (UCSF)","San Francisco, CA",37.7631,−122.4586,Yes,6,65750,53806
-University of Chicago,"Chicago, IL",41.7886,−87.5987,Yes,1,26870,21384
-University of Michigan,"Ann Arbor, MI",42.278,−83.7382,Yes,1,40584,34600
-University of Minnesota,"Minneapolis, MN",44.9778,−93.2650,Yes,11,144747,104910
-University of Pennsylvania,"Philadelphia, PA",39.9522,−75.1932,Yes,6,125249,97933
-University of Toronto,"Toronto, ON",43.6629,−79.3957,Yes,3,13259,12658
-Cornell University,"Ithaca, NY",42.443,−76.5019,No,,,
-Harvard University,"Cambridge, MA",42.377,−71.1167,No,,,
-University of Colorado,"Aurora, CO",39.7392,−104.9903,No,,,
+﻿Site,"City, State/Province",Latitude,Longitude,Data Ready,Hospitals,Encounters,Patients,Years
+Emory University,"Atlanta, GA",33.793,−84.3234,Yes,4,121782,93718,2014-2021
+Johns Hopkins University,"Baltimore, MD",39.3299,−76.6205,Yes,5,104641,85982,2017-2024
+Northwestern University,"Chicago, IL",41.8963,−87.6193,Yes,8,105721,85003,2018-2024
+Oregon Health & Science University,"Portland, OR",45.5051,−122.6750,Yes,2,63357,53527,2016-2024
+Rush University,"Chicago, IL",41.87426,−87.6679,Yes,1,50440,36637,2018-2024
+University of California San Francisco,"San Francisco, CA",37.7631,−122.4586,Yes,6,65750,53806,2011-2024
+University of Chicago,"Chicago, IL",41.7886,−87.5987,Yes,1,26870,21384,2019-2024
+University of Michigan,"Ann Arbor, MI",42.278,−83.7382,Yes,1,40584,34600,2018-2024
+University of Minnesota,"Minneapolis, MN",44.9778,−93.2650,Yes,11,144747,104910,2011-2024
+University of Pennsylvania,"Philadelphia, PA",39.9522,−75.1932,Yes,6,125249,97933,2017-2024
+University of Toronto,"Toronto, ON",43.6629,−79.3957,Yes,1,13259,12658,2017-2021
+Cornell University,"Ithaca, NY",42.443,−76.5019,No,,,,
+Harvard University,"Cambridge, MA",42.377,−71.1167,No,,,,
+University of Colorado,"Aurora, CO",39.7392,−104.9903,No,,,,
+MIMIC IV,"Boston, MA",42.336,–71.1094,Yes,1,85162,64954,2008 - 2022
