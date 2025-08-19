@@ -930,8 +930,8 @@ body, html {
 }
 
 #consolidated-status-matrix_wrapper {
-  height: calc(100vh - 200px) !important;
-  min-height: calc(100vh - 200px) !important;
+  height: 100% !important;
+  min-height: 100% !important;
   flex: 1 !important;
 }
 
@@ -940,8 +940,8 @@ body, html {
 }
 
 .dataTables_scrollBody {
-  height: calc(100vh - 280px) !important;
-  min-height: calc(100vh - 280px) !important;
+  height: 100% !important;
+  min-height: 100% !important;
 }
 
 .dataTables_info,
@@ -961,67 +961,6 @@ library(DT)
 # Define site order
 site_order <- c("ucsf", "university_michigan", "emory", "oregon_health_science", 
                 "northwestern", "university_chicago", "johns_hopkins", "rush")
-
-# Create mini cylinders positioned to align with table columns
-mini_cylinders_html <- paste0(
-  '<div style="margin-bottom: 0; padding: 0;">',
-  '<table style="width: 100%; border-collapse: collapse; margin: 0; table-layout: fixed;">',
-  '<tr style="background: #f8f9fa; border: 1px solid #dee2e6; border-bottom: none;">',
-  
-  # Empty cell for table name column - exactly matching DataTable
-  '<td style="width: 180px; padding: 2.75rem; text-align: left; font-size: 0.8rem; font-weight: 600; color: #495057; border-right: 1px solid #dee2e6; box-sizing: border-box;">Site Progress</td>',
-  
-  # Mini cylinders for each site - matching DataTable column widths exactly
-  paste(sapply(site_order, function(site_id) {
-    if(site_id %in% names(site_status_list)) {
-      site_data <- site_status_list[[site_id]]
-      site_name <- gsub("University", "Univ.", site_data$site_name)
-      site_name <- gsub("Health & Science", "H&S", site_name)
-      site_name <- gsub("California San Francisco", "Cal SF", site_name)
-      
-      # Get site completion
-      site_info <- site_summary[site_summary$site_name == site_data$site_name, ]
-      completion <- if(nrow(site_info) > 0) site_info$completion else 0
-      complete_tables <- if(nrow(site_info) > 0) site_info$complete_tables else 0
-      total_tables <- if(nrow(site_info) > 0) site_info$total_tables else 1
-      
-      # Determine cylinder color
-      cylinder_color <- if(completion == 100) '#7d1538' else if(completion >= 75) '#983248' else if(completion >= 50) '#c4898d' else '#f5e6d8'
-      
-      paste0(
-        '<td style="width: 120px; padding: 0.5rem; text-align: center; border-right: 1px solid #dee2e6; box-sizing: border-box;">',
-        
-        # Mini cylinder
-        '<div style="position: relative; width: 30px; height: 45px; margin: 0 auto 0.5rem; display: inline-block;">',
-        
-        # Cylinder body
-        '<div style="position: absolute; bottom: 0; left: 2px; width: 26px; height: 35px; background: linear-gradient(90deg, #f8f9fa 0%, #ffffff 50%, #f1f3f4 100%); border: 2px solid #dee2e6; border-radius: 0 0 4px 4px; box-shadow: inset 1px 0 2px rgba(0,0,0,0.1);"></div>',
-        
-        # Fill
-        '<div style="position: absolute; bottom: 2px; left: 4px; width: 22px; height: ', (completion * 0.31), 'px; background: ', cylinder_color, '; border-radius: 0 0 2px 2px; opacity: 0.9; transition: height 0.8s ease-in-out;"></div>',
-        
-        # Top
-        '<div style="position: absolute; top: 0; left: 2px; width: 26px; height: 10px; background: linear-gradient(90deg, #e9ecef 0%, #ffffff 50%, #e9ecef 100%); border: 2px solid #dee2e6; border-radius: 50%;"></div>',
-        
-        '</div>',
-        
-        # Stats below cylinder
-        '<div style="font-size: 0.8rem; color: ', cylinder_color, '; font-weight: 700; margin-bottom: 0.25rem;">', completion, '%</div>',
-        '<div style="font-size: 0.6rem; color: #6c757d;">', complete_tables, '/', total_tables, '</div>',
-        
-        '</td>'
-      )
-    } else {
-      return("")
-    }
-  }), collapse = ""),
-  
-  '</tr>',
-  '</table>',
-  '</div>'
-)
-
-htmltools::HTML(mini_cylinders_html)
 
 # Get all unique table names
 all_tables <- unique(c(
@@ -1045,7 +984,7 @@ matrix_data <- data.frame(
 for(site_id in site_order) {
   if(site_id %in% names(site_status_list)) {
     site_data <- site_status_list[[site_id]]
-    site_name <- gsub("University", "Univ.", site_data$site_name)
+    site_name <- gsub("University", "Uni.", site_data$site_name)
     site_name <- gsub("Health & Science", "H&S", site_name)
     site_name <- gsub("California San Francisco", "Cal SF", site_name)
     
@@ -1134,7 +1073,7 @@ datatable(matrix_data,
             columnDefs = list(
               list(className = 'dt-left', targets = 0),
               list(className = 'dt-center', targets = 1:(ncol(matrix_data)-1)),
-              list(width = '180px', targets = 0),
+              list(width = '125px', targets = 0),
               list(width = '120px', targets = 1:(ncol(matrix_data)-1))
             ),
             autoWidth = FALSE,
@@ -1193,10 +1132,71 @@ datatable(matrix_data,
             )
           ))
 
+# Create mini cylinders positioned to align with table columns
+mini_cylinders_html <- paste0(
+  '<div style="margin-bottom: 0; padding:0rem;">',
+  '<table style="width: 100%; border-collapse: collapse; margin: 0; table-layout: fixed;">',
+  '<tr style="background: #f8f9fa; border: 1px solid #dee2e6; border-bottom: none;">',
+  
+  # Empty cell for table name column - INCREASED WIDTH to 240px
+  '<td style="width: 240px; padding: 2.75rem; text-align: left; font-size: 0.8rem; font-weight: 600; color: #495057; border-right: 1px solid #dee2e6; box-sizing: border-box;">Site Progress</td>',
+  
+  # Mini cylinders for each site - matching DataTable column widths exactly
+  paste(sapply(site_order, function(site_id) {
+    if(site_id %in% names(site_status_list)) {
+      site_data <- site_status_list[[site_id]]
+      site_name <- gsub("University", "Univ.", site_data$site_name)
+      site_name <- gsub("Health & Science", "H&S", site_name)
+      site_name <- gsub("California San Francisco", "Cal SF", site_name)
+      
+      # Get site completion
+      site_info <- site_summary[site_summary$site_name == site_data$site_name, ]
+      completion <- if(nrow(site_info) > 0) site_info$completion else 0
+      complete_tables <- if(nrow(site_info) > 0) site_info$complete_tables else 0
+      total_tables <- if(nrow(site_info) > 0) site_info$total_tables else 1
+      
+      # Determine cylinder color
+      cylinder_color <- if(completion == 100) '#7d1538' else if(completion >= 75) '#983248' else if(completion >= 50) '#c4898d' else '#f5e6d8'
+      
+      paste0(
+        '<td style="width: 120px; padding: 0.5rem; text-align: center; border-right: 1px solid #dee2e6; box-sizing: border-box;">',
+        
+        # Mini cylinder
+        '<div style="position: relative; width: 30px; height: 45px; margin: 0 auto 0.5rem; display: inline-block;">',
+        
+        # Cylinder body
+        '<div style="position: absolute; bottom: 0; left: 2px; width: 26px; height: 35px; background: linear-gradient(90deg, #f8f9fa 0%, #ffffff 50%, #f1f3f4 100%); border: 2px solid #dee2e6; border-radius: 0 0 4px 4px; box-shadow: inset 1px 0 2px rgba(0,0,0,0.1);"></div>',
+        
+        # Fill
+        '<div style="position: absolute; bottom: 2px; left: 4px; width: 22px; height: ', (completion * 0.31), 'px; background: ', cylinder_color, '; border-radius: 0 0 2px 2px; opacity: 0.9; transition: height 0.8s ease-in-out;"></div>',
+        
+        # Top
+        '<div style="position: absolute; top: 0; left: 2px; width: 26px; height: 10px; background: linear-gradient(90deg, #e9ecef 0%, #ffffff 50%, #e9ecef 100%); border: 2px solid #dee2e6; border-radius: 50%;"></div>',
+        
+        '</div>',
+        
+        # Stats below cylinder
+        '<div style="font-size: 0.8rem; color: ', cylinder_color, '; font-weight: 700; margin-bottom: 0.25rem;">', completion, '%</div>',
+        '<div style="font-size: 0.6rem; color: #6c757d;">', complete_tables, '/', total_tables, '</div>',
+        
+        '</td>'
+      )
+    } else {
+      return("")
+    }
+  }), collapse = ""),
+  
+  '</tr>',
+  '</table>',
+  '</div>'
+)
+
+htmltools::HTML(mini_cylinders_html)
+
 # Add the status legend at the bottom of the matrix section
-legend_html <- '<div style="margin-top:0.25rem; background:#f8f9fa; border:1px solid #dee2e6; border-radius:4px; padding:0.4rem;">
-  <h6 style="margin-top:0.2in; margin-bottom:0.25rem; color:#495057; font-size:1.05rem; font-weight:700; text-align:center;">Status Legend</h6>
-  <div style="display:flex; flex-direction:row; gap:1.5rem; justify-content:center; align-items:center; flex-wrap:wrap;">
+legend_html <- '<div style="margin-top:0.25rem; background:#f8f9fa; border:1px solid #dee2e6; border-radius:4px; padding:0.25rem 0.5rem;">
+  <h6 style="margin:0 0 0.25rem 0; color:#495057; font-size:0.95rem; font-weight:700; text-align:center;">Status Legend</h6>
+  <div style="display:flex; flex-direction:row; gap:1rem; justify-content:center; align-items:center; flex-wrap:wrap;">
     <div style="display:flex; align-items:center; font-size:1rem;">
       <span style="display:inline-block; width:18px; height:18px; background:#7d1538; border:1.5px solid #5d1028; margin-right:8px;"></span>
       <strong>Complete</strong> <span style="color:#666; margin-left:5px;">(All requirements met)</span>
