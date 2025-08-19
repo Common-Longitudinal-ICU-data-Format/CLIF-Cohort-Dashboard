@@ -1,0 +1,119 @@
+{
+  "last_updated": "2025-08-19T12:30:00Z",
+  "total_sites": 8,
+  "sites_by_status": {
+    "complete": 2,
+    "in_progress": 5,
+    "not_started": 1
+  },
+  "table_summary": {
+    "patient": {
+      "complete": 7,
+      "in_progress": 1,
+      "not_started": 0,
+      "completion_rate": 0.875
+    },
+    "hospitalization": {
+      "complete": 8,
+      "in_progress": 0,
+      "not_started": 0,
+      "completion_rate": 1.0
+    },
+    "adt": {
+      "complete": 4,
+      "in_progress": 3,
+      "not_started": 1,
+      "completion_rate": 0.5
+    },
+    "vitals": {
+      "complete": 4,
+      "in_progress": 3,
+      "not_started": 1,
+      "completion_rate": 0.5
+    },
+    "labs": {
+      "complete": 4,
+      "in_progress": 4,
+      "not_started": 0,
+      "completion_rate": 0.5
+    },
+    "medication_admin_continuous": {
+      "complete": 4,
+      "in_progress": 2,
+      "not_started": 2,
+      "completion_rate": 0.5
+    },
+    "respiratory_support": {
+      "complete": 3,
+      "in_progress": 3,
+      "not_started": 2,
+      "completion_rate": 0.375
+    }
+  },
+  "sites": {
+    "emory": {
+      "site_name": "Emory University",
+      "overall_completion": 0.94,
+      "complete_tables": 6,
+      "total_tables": 7,
+      "status": "In progress",
+      "last_updated": "2025-08-19T12:00:00Z"
+    },
+    "johns_hopkins": {
+      "site_name": "Johns Hopkins University", 
+      "overall_completion": 0.75,
+      "complete_tables": 3,
+      "total_tables": 7,
+      "status": "In progress",
+      "last_updated": "2025-08-19T11:30:00Z"
+    },
+    "northwestern": {
+      "site_name": "Northwestern University",
+      "overall_completion": 0.84,
+      "complete_tables": 4,
+      "total_tables": 7,
+      "status": "In progress",
+      "last_updated": "2025-08-19T10:45:00Z"
+    },
+    "oregon_health_science": {
+      "site_name": "Oregon Health & Science University",
+      "overall_completion": 0.94,
+      "complete_tables": 5,
+      "total_tables": 7,
+      "status": "In progress", 
+      "last_updated": "2025-08-19T09:15:00Z"
+    },
+    "rush": {
+      "site_name": "Rush University",
+      "overall_completion": 0.41,
+      "complete_tables": 1,
+      "total_tables": 7,
+      "status": "In progress",
+      "last_updated": "2025-08-19T08:30:00Z"
+    },
+    "ucsf": {
+      "site_name": "University of California San Francisco",
+      "overall_completion": 1.0,
+      "complete_tables": 7,
+      "total_tables": 7,
+      "status": "Complete",
+      "last_updated": "2025-08-19T11:00:00Z"
+    },
+    "university_chicago": {
+      "site_name": "University of Chicago",
+      "overall_completion": 0.77,
+      "complete_tables": 2,
+      "total_tables": 7,
+      "status": "In progress",
+      "last_updated": "2025-08-19T10:00:00Z"
+    },
+    "university_michigan": {
+      "site_name": "University of Michigan",
+      "overall_completion": 0.98,
+      "complete_tables": 6,
+      "total_tables": 7,
+      "status": "Complete",
+      "last_updated": "2025-08-19T12:30:00Z"
+    }
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "site_name": "University of Chicago",
+  "site_id": "university_chicago",
+  "last_updated": "2025-08-19T10:00:00Z",
+  "contact": "uchicago-clif@uchicago.edu",
+  "tables": {
+    "patient": {
+      "status": "Complete",
+      "completeness_score": 1.0,
+      "missing_columns": [],
+      "missing_categories": [],
+      "details": "All requirements met"
+    },
+    "hospitalization": {
+      "status": "Complete",
+      "completeness_score": 1.0,
+      "missing_columns": [],
+      "missing_categories": [],
+      "details": "All requirements met"
+    },
+    "adt": {
+      "status": "In progress",
+      "completeness_score": 0.8,
+      "missing_columns": [],
+      "missing_categories": [],
+      "details": "Partial data available"
+    },
+    "vitals": {
+      "status": "In progress",
+      "completeness_score": 0.65,
+      "missing_columns": [],
+      "missing_categories": ["weight_kg"],
+      "details": "Missing categories: weight_kg"
+    },
+    "labs": {
+      "status": "In progress",
+      "completeness_score": 0.7,
+      "missing_columns": [],
+      "missing_categories": ["bilirubin_total"],
+      "details": "Missing categories: bilirubin_total"
+    },
+    "medication_admin_continuous": {
+      "status": "In progress",
+      "completeness_score": 0.75,
+      "missing_columns": [],
+      "missing_categories": ["epinephrine"],
+      "details": "Missing categories: epinephrine"
+    },
+    "respiratory_support": {
+      "status": "In progress",
+      "completeness_score": 0.5,
+      "missing_columns": ["peep_set", "pressure_control_set"],
+      "missing_categories": [],
+      "details": "Missing columns: peep_set, pressure_control_set"
+    }
+  }
+}

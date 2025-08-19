@@ -10,7 +10,10 @@ packages <- c(
   "plotly",
   "DT",
   "readxl",
-  "scales"  # For number formatting
+  "scales",  # For number formatting
+  "jsonlite", # For JSON parsing
+  "knitr",    # For table formatting
+  "kableExtra" # For advanced table styling
 )
 
 # Install missing packages

@@ -1,0 +1,57 @@
+{
+  "site_name": "Oregon Health & Science University",
+  "site_id": "oregon_health_science",
+  "last_updated": "2025-08-19T09:15:00Z",
+  "contact": "ohsu-clif@ohsu.edu",
+  "tables": {
+    "patient": {
+      "status": "Complete",
+      "completeness_score": 1.0,
+      "missing_columns": [],
+      "missing_categories": [],
+      "details": "All requirements met"
+    },
+    "hospitalization": {
+      "status": "Complete",
+      "completeness_score": 1.0,
+      "missing_columns": [],
+      "missing_categories": [],
+      "details": "All requirements met"
+    },
+    "adt": {
+      "status": "Complete",
+      "completeness_score": 1.0,
+      "missing_columns": [],
+      "missing_categories": [],
+      "details": "All requirements met"
+    },
+    "vitals": {
+      "status": "Complete",
+      "completeness_score": 1.0,
+      "missing_columns": [],
+      "missing_categories": [],
+      "details": "All requirements met"
+    },
+    "labs": {
+      "status": "Complete",
+      "completeness_score": 1.0,
+      "missing_columns": [],
+      "missing_categories": [],
+      "details": "All requirements met"
+    },
+    "medication_admin_continuous": {
+      "status": "In progress",
+      "completeness_score": 0.85,
+      "missing_columns": [],
+      "missing_categories": ["dopamine"],
+      "details": "Missing categories: dopamine"
+    },
+    "respiratory_support": {
+      "status": "In progress",
+      "completeness_score": 0.7,
+      "missing_columns": ["tidal_volume_set"],
+      "missing_categories": [],
+      "details": "Missing columns: tidal_volume_set"
+    }
+  }
+}

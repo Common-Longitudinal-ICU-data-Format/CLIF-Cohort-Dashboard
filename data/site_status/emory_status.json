@@ -1,0 +1,57 @@
+{
+  "site_name": "Emory University",
+  "site_id": "emory",
+  "last_updated": "2025-08-19T12:00:00Z",
+  "contact": "data@emory.edu",
+  "tables": {
+    "patient": {
+      "status": "Complete",
+      "completeness_score": 1.0,
+      "missing_columns": [],
+      "missing_categories": [],
+      "details": "All requirements met"
+    },
+    "hospitalization": {
+      "status": "Complete", 
+      "completeness_score": 1.0,
+      "missing_columns": [],
+      "missing_categories": [],
+      "details": "All requirements met"
+    },
+    "adt": {
+      "status": "Complete",
+      "completeness_score": 1.0,
+      "missing_columns": [],
+      "missing_categories": [],
+      "details": "All requirements met"
+    },
+    "vitals": {
+      "status": "Complete",
+      "completeness_score": 1.0,
+      "missing_columns": [],
+      "missing_categories": [],
+      "details": "All requirements met"
+    },
+    "labs": {
+      "status": "In progress",
+      "completeness_score": 0.8,
+      "missing_columns": [],
+      "missing_categories": ["po2_arterial"],
+      "details": "Missing categories: po2_arterial"
+    },
+    "medication_admin_continuous": {
+      "status": "Complete",
+      "completeness_score": 1.0,
+      "missing_columns": [],
+      "missing_categories": [],
+      "details": "All requirements met"
+    },
+    "respiratory_support": {
+      "status": "Complete",
+      "completeness_score": 1.0,
+      "missing_columns": [],
+      "missing_categories": [],
+      "details": "All requirements met"
+    }
+  }
+}

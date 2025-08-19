@@ -1,0 +1,57 @@
+{
+  "site_name": "University of California San Francisco",
+  "site_id": "ucsf",
+  "last_updated": "2025-08-19T11:00:00Z",
+  "contact": "clif@ucsf.edu",
+  "tables": {
+    "patient": {
+      "status": "Complete",
+      "completeness_score": 1.0,
+      "missing_columns": [],
+      "missing_categories": [],
+      "details": "All requirements met"
+    },
+    "hospitalization": {
+      "status": "Complete",
+      "completeness_score": 1.0,
+      "missing_columns": [],
+      "missing_categories": [],
+      "details": "All requirements met"
+    },
+    "adt": {
+      "status": "Complete",
+      "completeness_score": 1.0,
+      "missing_columns": [],
+      "missing_categories": [],
+      "details": "All requirements met"
+    },
+    "vitals": {
+      "status": "Complete",
+      "completeness_score": 1.0,
+      "missing_columns": [],
+      "missing_categories": [],
+      "details": "All requirements met"
+    },
+    "labs": {
+      "status": "Complete",
+      "completeness_score": 1.0,
+      "missing_columns": [],
+      "missing_categories": [],
+      "details": "All requirements met"
+    },
+    "medication_admin_continuous": {
+      "status": "Complete",
+      "completeness_score": 1.0,
+      "missing_columns": [],
+      "missing_categories": [],
+      "details": "All requirements met"
+    },
+    "respiratory_support": {
+      "status": "Complete",
+      "completeness_score": 1.0,
+      "missing_columns": [],
+      "missing_categories": [],
+      "details": "All requirements met"
+    }
+  }
+}
