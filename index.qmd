@@ -680,23 +680,6 @@ for(file in site_files) {
   site_status_list[[site_id]] <- site_data
 }
 
-# Create status color mapping
-status_colors <- c(
-  "Complete" = "#28a745",      # Green
-  "In progress" = "#007bff",   # Blue  
-  "Not started" = "#6c757d"    # Gray
-)
-
-# Helper function to create professional status icons
-create_status_icon <- function(status) {
-  icons <- list(
-    "Complete" = "✓",
-    "In progress" = "◐", 
-    "Not started" = "○"
-  )
-  return(icons[[status]])
-}
-
 # Helper function to create clean status indicator (color box only)
 create_status_cell <- function(status, completeness = NULL) {
   # Determine status info
@@ -711,11 +694,11 @@ create_status_cell <- function(status, completeness = NULL) {
   if(percentage == 100) {
     return('<div style="width: 20px; height: 20px; background: #7d1538; border: 1px solid #5d1028; margin: 0 auto;"></div>')
   } else if(percentage >= 75) {
-    return('<div style="width: 20px; height: 20px; background: #983248; border: 1px solid #7d1538; margin: 0 auto;"></div>')
-  } else if(percentage > 0) {
-    return('<div style="width: 20px; height: 20px; background: #c4898d; border: 1px solid #983248; margin: 0 auto;"></div>')
+    return('<div style="width: 20px; height: 20px; background: #705555; border: 1px solid #983248; margin: 0 auto;"></div>')
+  } else if(percentage > 50) {
+    return('<div style="width: 20px; height: 20px; background: #e6a1a1; border: 1px solid  #5d1028; margin: 0 auto;"></div>')
   } else {
-    return('<div style="width: 20px; height: 20px; background: #f5e6d8; border: 1px solid #e0c4a8; margin: 0 auto;"></div>')
+    return('<div style="width: 20px; height: 20px; background: #9c8989; border: 1px solid #5d1028; margin: 0 auto;"></div>')
   }
 }
 
@@ -767,7 +750,7 @@ create_clif_cylinder <- function(site_name, completion, complete_tables, total_t
     liquid_color <- "#c4898d" 
     glow_color <- "#d4a4a8"
   } else {
-    liquid_color <- "#f5e6d8"
+    liquid_color <- "#9c8989"
     glow_color <- "#f8ece2"
   }
   
@@ -1023,7 +1006,7 @@ create_column_headers <- function() {
       total_tables <- if(nrow(site_info) > 0) site_info$total_tables else 1
       
       # Determine cylinder color
-      cylinder_color <- if(completion == 100) '#7d1538' else if(completion >= 75) '#983248' else if(completion >= 50) '#c4898d' else '#f5e6d8'
+      cylinder_color <- if(completion == 100) '#7d1538' else if(completion >= 75) '#705555' else if(completion >= 50) '#e6a1a1' else '#9c8989'
       
       # Create header with mini cylinder
       header_html <- paste0(
@@ -1156,7 +1139,7 @@ mini_cylinders_html <- paste0(
       total_tables <- if(nrow(site_info) > 0) site_info$total_tables else 1
       
       # Determine cylinder color
-      cylinder_color <- if(completion == 100) '#7d1538' else if(completion >= 75) '#983248' else if(completion >= 50) '#c4898d' else '#f5e6d8'
+      cylinder_color <- if(completion == 100) '#7d1538' else if(completion >= 75) '#983248' else if(completion >= 50) '#c4898d' else '#9c8989'
       
       paste0(
         '<td style="width: 120px; padding: 0.5rem; text-align: center; border-right: 1px solid #dee2e6; box-sizing: border-box;">',
@@ -1165,13 +1148,13 @@ mini_cylinders_html <- paste0(
         '<div style="position: relative; width: 30px; height: 45px; margin: 0 auto 0.5rem; display: inline-block;">',
         
         # Cylinder body
-        '<div style="position: absolute; bottom: 0; left: 2px; width: 26px; height: 35px; background: linear-gradient(90deg, #f8f9fa 0%, #ffffff 50%, #f1f3f4 100%); border: 2px solid #dee2e6; border-radius: 0 0 4px 4px; box-shadow: inset 1px 0 2px rgba(0,0,0,0.1);"></div>',
+        '<div style="position: absolute; bottom: 0; left: 2px; width: 26px; height: 35px; background: linear-gradient(90deg, #f8f9fa 0%, #ffffff 50%, #f1f3f4 100%); border: 2px solid #7d1538; border-radius: 0 0 4px 4px; box-shadow: inset 1px 0 2px rgba(0,0,0,0.1);"></div>',
         
         # Fill
         '<div style="position: absolute; bottom: 2px; left: 4px; width: 22px; height: ', (completion * 0.31), 'px; background: ', cylinder_color, '; border-radius: 0 0 2px 2px; opacity: 0.9; transition: height 0.8s ease-in-out;"></div>',
         
         # Top
-        '<div style="position: absolute; top: 0; left: 2px; width: 26px; height: 10px; background: linear-gradient(90deg, #e9ecef 0%, #ffffff 50%, #e9ecef 100%); border: 2px solid #dee2e6; border-radius: 50%;"></div>',
+        '<div style="position: absolute; top: 0; left: 2px; width: 26px; height: 10px; background: linear-gradient(90deg, #e9ecef 0%, #ffffff 50%, #e9ecef 100%); border: 2px solid #7d1538; border-radius: 50%;"></div>',
         
         '</div>',
         
@@ -1202,16 +1185,16 @@ legend_html <- '<div style="margin-top:0.25rem; background:#f8f9fa; border:1px s
       <strong>Complete</strong> <span style="color:#666; margin-left:5px;">(All requirements met)</span>
     </div>
     <div style="display:flex; align-items:center; font-size:1rem;">
-      <span style="display:inline-block; width:18px; height:18px; background:#983248; border:1.5px solid #7d1538; margin-right:8px;"></span>
-      <strong>In Progress</strong> <span style="color:#666; margin-left:5px;">(Most data available)</span>
+      <span style="display:inline-block; width:18px; height:18px; background:#705555; border:1.5px solid #983248; margin-right:8px;"></span>
+      <strong>Partial</strong> <span style="color:#666; margin-left:5px;">(All required columns and some mCIDE)</span>
+    </div>
+        <div style="display:flex; align-items:center; font-size:1rem;">
+      <span style="display:inline-block; width:18px; height:18px; background:#e6a1a1; border:1.5px solid #5d1028; margin-right:8px;"></span>
+      <strong>In Progress</strong> <span style="color:#666; margin-left:5px;"></span>
     </div>
     <div style="display:flex; align-items:center; font-size:1rem;">
-      <span style="display:inline-block; width:18px; height:18px; background:#c4898d; border:1.5px solid #983248; margin-right:8px;"></span>
-      <strong>Partial</strong> <span style="color:#666; margin-left:5px;">(Some data available)</span>
-    </div>
-    <div style="display:flex; align-items:center; font-size:1rem;">
-      <span style="display:inline-block; width:22px; height:22px; background:#f5e6d8; border:1.5px solid #e0c4a8; margin-right:10px;"></span>
-      <strong>Not Started</strong> <span style="color:#666; margin-left:6px;">(No data available)</span>
+      <span style="display:inline-block; width:22px; height:22px; background:#9c8989; border:1.5px solid #5d1028; margin-right:10px;"></span>
+      <strong>Not Started</strong> <span style="color:#666; margin-left:6px;"></span>
     </div>
   </div>
 </div>'
