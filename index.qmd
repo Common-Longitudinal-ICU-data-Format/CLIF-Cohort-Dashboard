@@ -928,8 +928,8 @@ htmltools::HTML(master_cylinder_html)
 }
 
 .status-tracker-container .dataTables_scrollBody {
-  height: calc(100vh - 350px) !important;
-  min-height: calc(100vh - 350px) !important;
+  height: auto !important;
+  min-height: auto !important;
 }
 
 .status-tracker-container .dataTables_info,
@@ -1005,7 +1005,7 @@ datatable(matrix_data,
           options = list(
             pageLength = -1,
             scrollX = FALSE,
-            scrollY = "calc(100vh - 280px)",
+            scrollCollapse = TRUE,
             dom = 't',
             order = list(list(0, 'asc')),
             columnDefs = list(
