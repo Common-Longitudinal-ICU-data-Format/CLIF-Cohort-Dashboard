@@ -665,60 +665,72 @@ The unit of measurement for all medications presented here is mcg/kg/min, except
 
 ```{r status-tracker-setup, include=FALSE}
 # Read table status data
-table_status <- read.csv("data/table_status.csv", stringsAsFactors = FALSE)
-status_summary <- jsonlite::fromJSON("data/table_status_summary.json")
+# table_status <- read.csv("data/table_status.csv", stringsAsFactors = FALSE)  # Now using site_status_matrix.csv
+# status_summary <- jsonlite::fromJSON("data/table_status_summary.json")  # Now using site_status_matrix.csv
 
 # Read site-specific status data
-site_status_aggregated <- jsonlite::fromJSON("data/site_status_aggregated.json")
+# site_status_aggregated <- jsonlite::fromJSON("data/site_status_aggregated.json")  # Now using CSV files
 
 # Read individual site status files
-site_files <- list.files("data/site_status", pattern = ".*_status\\.json$", full.names = TRUE)
-site_status_list <- list()
-for(file in site_files) {
-  site_data <- jsonlite::fromJSON(file)
-  site_id <- site_data$site_id
-  site_status_list[[site_id]] <- site_data
-}
+# site_files <- list.files("data/site_status", pattern = ".*_status\\.json$", full.names = TRUE)
+# site_status_list <- list()
+# for(file in site_files) {
+#   site_data <- jsonlite::fromJSON(file)
+#   site_id <- site_data$site_id
+#   site_status_list[[site_id]] <- site_data
+# }
 
 # Helper function to create clean status indicator (color box only)
 create_status_cell <- function(status, completeness = NULL) {
-  # Determine status info
-  if(!is.null(completeness)) {
-    percentage <- round(completeness * 100)
-  } else {
-    percentage <- ifelse(status == "Complete", 100, 
-                        ifelse(status == "In progress", 50, 0))
-  }
-  
-  # Burgundy to beige color scheme - return only colored box
-  if(percentage == 100) {
+  # Convert status to lowercase for comparison
+  status_lower <- tolower(status)
+
+  # Use exact status matching instead of percentage logic to match our 3-color legend
+  if(status_lower == "complete") {
+    # Complete - Dark maroon (matches legend)
     return('<div style="width: 20px; height: 20px; background: #7d1538; border: 1px solid #5d1028; margin: 0 auto;"></div>')
-  } else if(percentage >= 75) {
-    return('<div style="width: 20px; height: 20px; background: #705555; border: 1px solid #983248; margin: 0 auto;"></div>')
-  } else if(percentage > 50) {
-    return('<div style="width: 20px; height: 20px; background: #e6a1a1; border: 1px solid  #5d1028; margin: 0 auto;"></div>')
+  } else if(status_lower == "partial") {
+    # Partial - Light pink (matches legend)
+    return('<div style="width: 20px; height: 20px; background: #e6a1a1; border: 1px solid #5d1028; margin: 0 auto;"></div>')
   } else {
+    # Incomplete - Gray (matches legend)
     return('<div style="width: 20px; height: 20px; background: #9c8989; border: 1px solid #5d1028; margin: 0 auto;"></div>')
   }
 }
 
 # Helper function to create site status summary
 create_site_status_summary <- function() {
+  # Read the site status matrix CSV
+  site_status_matrix <- read_csv("data/site_status_matrix.csv", show_col_types = FALSE)
+
+  # Extract site names from the CSV (excluding Table_Name column)
+  site_names <- colnames(site_status_matrix)[-1]
+
   site_summary <- data.frame()
-  
-  for(site_id in names(site_status_aggregated$sites)) {
-    site_info <- site_status_aggregated$sites[[site_id]]
+
+  # Calculate completion for each site
+  for(site_name in site_names) {
+    site_col <- site_status_matrix[[site_name]]
+    statuses <- tolower(site_col)
+
+    complete_count <- sum(statuses == "complete")
+    partial_count <- sum(statuses == "partial")
+    total_count <- length(statuses)
+
+    # Calculate weighted completion (complete=100%, partial=75%, incomplete=0%)
+    completion <- round((complete_count * 100 + partial_count * 75) / total_count)
+
     site_summary <- rbind(site_summary, data.frame(
-      site_name = site_info$site_name,
-      completion = round(site_info$overall_completion * 100, 1),
-      complete_tables = site_info$complete_tables,
-      total_tables = site_info$total_tables,
-      status = site_info$status,
-      last_updated = site_info$last_updated,
+      site_name = site_name,
+      completion = completion,
+      complete_tables = complete_count,
+      total_tables = total_count,
+      status = if(completion >= 90) "Ready" else "Pending",
+      last_updated = Sys.Date(),
       stringsAsFactors = FALSE
     ))
   }
-  
+
   # Sort by completion percentage descending
   site_summary <- site_summary[order(-site_summary$completion),]
   return(site_summary)
@@ -871,7 +883,7 @@ master_cylinder_html <- paste0(
   '<div style="font-size: 2.5rem; font-weight: 700; color: #7d1538; margin-bottom: 0.5rem;">', overall_completion, '%</div>',
   '<div style="font-size: 1rem; color: #6c757d; margin-bottom: 0.5rem;">', total_completed, ' of ', total_possible, ' tables complete</div>',
   '<div style="font-size: 0.8rem; color: #7d1538; font-weight: 600;">Federated Research Dataset</div>',
-  '<div style="font-size: 0.75rem; color: #999; margin-top: 1rem;">Last Updated: ', format(as.POSIXct(status_summary$last_updated), "%B %d, %Y at %I:%M %p"), '</div>',
+  '<div style="font-size: 0.75rem; color: #999; margin-top: 1rem;">Last Updated: ', format(Sys.Date(), "%B %d, %Y"), '</div>',
   '</div>',
   
   '</div>',
@@ -940,111 +952,57 @@ input[type="search"],
 
 ```{r consolidated-status-matrix}
 library(DT)
+library(readr)
 
-# Define site order
-site_order <- c("ucsf", "university_michigan", "emory", "oregon_health_science", 
-                "northwestern", "university_chicago", "johns_hopkins", "rush")
+# Read the site status matrix CSV
+site_status_matrix <- read_csv("data/site_status_matrix.csv", show_col_types = FALSE)
 
-# Get all unique table names
-all_tables <- unique(c(
-  names(site_status_list$emory$tables),
-  names(site_status_list$johns_hopkins$tables),
-  names(site_status_list$northwestern$tables),
-  names(site_status_list$oregon_health_science$tables),
-  names(site_status_list$rush$tables),
-  names(site_status_list$ucsf$tables),
-  names(site_status_list$university_chicago$tables),
-  names(site_status_list$university_michigan$tables)
-))
+# Extract site names from the CSV (excluding Table_Name column)
+site_names <- colnames(site_status_matrix)[-1]
 
-# Start with table names as first column
+# Create matrix data starting with table names
 matrix_data <- data.frame(
-  `Table Name` = tools::toTitleCase(gsub("_", " ", all_tables)),
+  `Table Name` = site_status_matrix$Table_Name,
   stringsAsFactors = FALSE
 )
 
-# Add a column for each site
-for(site_id in site_order) {
-  if(site_id %in% names(site_status_list)) {
-    site_data <- site_status_list[[site_id]]
-    site_name <- gsub("University", "Uni.", site_data$site_name)
-    site_name <- gsub("Health & Science", "H&S", site_name)
-    site_name <- gsub("California San Francisco", "Cal SF", site_name)
-    
-    site_column <- character(length(all_tables))
-    
-    # Add status for each table
-    for(i in seq_along(all_tables)) {
-      table_name <- all_tables[i]
-      if(table_name %in% names(site_data$tables)) {
-        table_info <- site_data$tables[[table_name]]
-        site_column[i] <- create_status_cell(table_info$status, table_info$completeness_score)
-      } else {
-        site_column[i] <- create_status_cell("Not started", 0)
-      }
-    }
-    
-    matrix_data[[site_name]] <- site_column
+# Add columns for each site with status cells
+for (site_name in site_names) {
+  site_column <- character(nrow(site_status_matrix))
+
+  # Add status for each table using existing create_status_cell function
+  for(i in seq_along(site_status_matrix[[site_name]])) {
+    status <- site_status_matrix[[site_name]][i]
+    completeness_score <- case_when(
+      tolower(status) == "complete" ~ 1.0,
+      tolower(status) == "partial" ~ 0.75,
+      TRUE ~ 0.5
+    )
+    site_column[i] <- create_status_cell(status, completeness_score)
   }
+
+  matrix_data[[site_name]] <- site_column
 }
 
-# Create custom column headers with mini cylinders
-create_column_headers <- function() {
-  headers <- c("Table Name")
-  
-  for(site_id in site_order) {
-    if(site_id %in% names(site_status_list)) {
-      site_data <- site_status_list[[site_id]]
-      site_name <- gsub("University", "Univ.", site_data$site_name)
-      site_name <- gsub("Health & Science", "H&S", site_name)
-      site_name <- gsub("California San Francisco", "Cal SF", site_name)
-      
-      # Get site completion
-      site_info <- site_summary[site_summary$site_name == site_data$site_name, ]
-      completion <- if(nrow(site_info) > 0) site_info$completion else 0
-      complete_tables <- if(nrow(site_info) > 0) site_info$complete_tables else 0
-      total_tables <- if(nrow(site_info) > 0) site_info$total_tables else 1
-      
-      # Determine cylinder color
-      cylinder_color <- if(completion == 100) '#7d1538' else if(completion >= 75) '#705555' else if(completion >= 50) '#e6a1a1' else '#9c8989'
-      
-      # Create header with mini cylinder
-      header_html <- paste0(
-        '<div style="text-align: center; padding: 0.5rem;">',
-        
-        # Mini cylinder above site name
-        '<div style="position: relative; width: 25px; height: 35px; margin: 0 auto 0.5rem; display: inline-block;">',
-        
-        # Cylinder body
-        '<div style="position: absolute; bottom: 0; left: 2px; width: 21px; height: 28px; background: linear-gradient(90deg, #f8f9fa 0%, #ffffff 50%, #f1f3f4 100%); border: 1px solid #dee2e6; border-radius: 0 0 3px 3px; box-shadow: inset 1px 0 2px rgba(0,0,0,0.1);"></div>',
-        
-        # Fill
-        '<div style="position: absolute; bottom: 1px; left: 3px; width: 19px; height: ', (completion * 0.26), 'px; background: ', cylinder_color, '; border-radius: 0 0 2px 2px; opacity: 0.9;"></div>',
-        
-        # Top
-        '<div style="position: absolute; top: 0; left: 2px; width: 21px; height: 7px; background: linear-gradient(90deg, #e9ecef 0%, #ffffff 50%, #e9ecef 100%); border: 1px solid #dee2e6; border-radius: 50%;"></div>',
-        
-        '</div>',
-        
-        # Site name and stats
-        '<div style="font-size: 0.8rem; font-weight: 600; color: #343a40; margin-bottom: 0.25rem;">', site_name, '</div>',
-        '<div style="font-size: 0.7rem; color: ', cylinder_color, '; font-weight: 600;">', completion, '%</div>',
-        '<div style="font-size: 0.6rem; color: #6c757d;">', complete_tables, '/', total_tables, '</div>',
-        
-        '</div>'
-      )
-      
-      headers <- c(headers, header_html)
-    }
-  }
-  
-  return(headers)
+# Calculate completion percentages for each site
+calculate_site_completion <- function(site_col) {
+  statuses <- tolower(site_col)
+  complete_count <- sum(statuses == "complete")
+  partial_count <- sum(statuses == "partial")
+  total_count <- length(statuses)
+
+  # Calculate weighted completion (complete=100%, partial=75%, incomplete=0%)
+  completion <- round((complete_count * 100 + partial_count * 75) / total_count)
+
+  return(list(
+    completion = completion,
+    complete_tables = complete_count,
+    partial_tables = partial_count,
+    total_tables = total_count
+  ))
 }
 
-# Get custom headers
-custom_headers <- create_column_headers()
-
-# Create the consolidated table with custom headers
+# Create the consolidated table
 datatable(matrix_data,
           elementId = "consolidated-status-matrix",
           options = list(
@@ -1096,24 +1054,7 @@ datatable(matrix_data,
           filter = 'none',
           extensions = c('Buttons', 'FixedHeader'),
           escape = FALSE,
-          style = 'bootstrap4',
-          container = tags$table(
-            class = "display",
-            style = "border-top: none; margin-top: 0;",
-            tags$thead(
-              style = "background-color: #343a40; color: white;",
-              tags$tr(
-                style = "border-top: none;",
-                lapply(names(matrix_data), function(name) {
-                  if(name == "Table.Name") {
-                    tags$th(name, style = "text-align: left; padding: 0.75rem; font-weight: 600;")
-                  } else {
-                    tags$th(name, style = "text-align: center; padding: 0.75rem; font-weight: 600; width: 100px;")
-                  }
-                })
-              )
-            )
-          ))
+          style = 'bootstrap4')
 
 # Create mini cylinders positioned to align with table columns
 mini_cylinders_html <- paste0(
@@ -1124,22 +1065,16 @@ mini_cylinders_html <- paste0(
   # Empty cell for table name column - INCREASED WIDTH to 240px
   '<td style="width: 240px; padding: 2.75rem; text-align: left; font-size: 0.8rem; font-weight: 600; color: #495057; border-right: 1px solid #dee2e6; box-sizing: border-box;">Site Progress</td>',
   
-  # Mini cylinders for each site - matching DataTable column widths exactly
-  paste(sapply(site_order, function(site_id) {
-    if(site_id %in% names(site_status_list)) {
-      site_data <- site_status_list[[site_id]]
-      site_name <- gsub("University", "Univ.", site_data$site_name)
-      site_name <- gsub("Health & Science", "H&S", site_name)
-      site_name <- gsub("California San Francisco", "Cal SF", site_name)
-      
-      # Get site completion
-      site_info <- site_summary[site_summary$site_name == site_data$site_name, ]
-      completion <- if(nrow(site_info) > 0) site_info$completion else 0
-      complete_tables <- if(nrow(site_info) > 0) site_info$complete_tables else 0
-      total_tables <- if(nrow(site_info) > 0) site_info$total_tables else 1
-      
-      # Determine cylinder color
-      cylinder_color <- if(completion == 100) '#7d1538' else if(completion >= 75) '#983248' else if(completion >= 50) '#c4898d' else '#9c8989'
+  # Mini cylinders for each site
+  paste(sapply(site_names, function(site_name) {
+    # Get site completion stats
+    site_stats <- calculate_site_completion(site_status_matrix[[site_name]])
+    completion <- site_stats$completion
+    complete_tables <- site_stats$complete_tables
+    total_tables <- site_stats$total_tables
+
+    # Determine cylinder color based on completion
+    cylinder_color <- if(completion >= 90) '#7d1538' else if(completion >= 70) '#983248' else if(completion >= 50) '#e6a1a1' else '#9c8989'
       
       paste0(
         '<td style="width: 120px; padding: 0.5rem; text-align: center; border-right: 1px solid #dee2e6; box-sizing: border-box;">',
@@ -1158,15 +1093,13 @@ mini_cylinders_html <- paste0(
         
         '</div>',
         
-        # Stats below cylinder
+        # Site name and stats below cylinder
+        '<div style="font-size: 0.8rem; font-weight: 600; color: #343a40; margin-bottom: 0.25rem;">', site_name, '</div>',
         '<div style="font-size: 0.8rem; color: ', cylinder_color, '; font-weight: 700; margin-bottom: 0.25rem;">', completion, '%</div>',
         '<div style="font-size: 0.6rem; color: #6c757d;">', complete_tables, '/', total_tables, '</div>',
         
         '</td>'
       )
-    } else {
-      return("")
-    }
   }), collapse = ""),
   
   '</tr>',
@@ -1182,19 +1115,15 @@ legend_html <- '<div style="margin-top:0.25rem; background:#f8f9fa; border:1px s
   <div style="display:flex; flex-direction:row; gap:1rem; justify-content:center; align-items:center; flex-wrap:wrap;">
     <div style="display:flex; align-items:center; font-size:1rem;">
       <span style="display:inline-block; width:18px; height:18px; background:#7d1538; border:1.5px solid #5d1028; margin-right:8px;"></span>
-      <strong>Complete</strong> <span style="color:#666; margin-left:5px;">(All requirements met)</span>
+      <strong>Complete</strong> <span style="color:#666; margin-left:5px;"></span>
     </div>
     <div style="display:flex; align-items:center; font-size:1rem;">
-      <span style="display:inline-block; width:18px; height:18px; background:#705555; border:1.5px solid #983248; margin-right:8px;"></span>
-      <strong>Partial</strong> <span style="color:#666; margin-left:5px;">(All required columns and some mCIDE)</span>
-    </div>
-        <div style="display:flex; align-items:center; font-size:1rem;">
       <span style="display:inline-block; width:18px; height:18px; background:#e6a1a1; border:1.5px solid #5d1028; margin-right:8px;"></span>
-      <strong>In Progress</strong> <span style="color:#666; margin-left:5px;"></span>
+      <strong>Partial</strong> <span style="color:#666; margin-left:5px;"></span>
     </div>
     <div style="display:flex; align-items:center; font-size:1rem;">
       <span style="display:inline-block; width:22px; height:22px; background:#9c8989; border:1.5px solid #5d1028; margin-right:10px;"></span>
-      <strong>Not Started</strong> <span style="color:#666; margin-left:6px;"></span>
+      <strong>Incomplete</strong> <span style="color:#666; margin-left:6px;"></span>
     </div>
   </div>
 </div>'

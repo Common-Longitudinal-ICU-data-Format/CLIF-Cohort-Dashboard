@@ -1,0 +1,65 @@
+table_name,status,issue_type,issue_category,column_name,issue_description,severity,unique_hospitalizations,unique_patients,total_rows
+ADT,incomplete,Table Summary,Info,,Table loaded successfully,info,275,100,1136
+ADT,incomplete,Missing Required Columns,Schema,,Required columns not found: hospital_type,high,275,100,1136
+ADT,incomplete,Missing Values,Data Quality,hospital_id,"Column 'hospital_id' has 1,136 missing values (100.0%)",high,275,100,1136
+ADT,incomplete,Missing Values,Data Quality,out_dttm,Column 'out_dttm' has 275 missing values (24.2%),medium,275,100,1136
+ADT,incomplete,Missing Values,Data Quality,location_category,Column 'location_category' has 275 missing values (24.2%),medium,275,100,1136
+ADT,incomplete,Missing Categorical Values,Categorical,location_category,Column 'location_category' is missing 5 expected category values,medium,275,100,1136
+Hospitalization,partial,Table Summary,Info,,Table loaded successfully,info,275,100,275
+Hospitalization,partial,Missing Categorical Values,Categorical,discharge_category,Column 'discharge_category' is missing 7 expected category values,medium,275,100,275
+Labs,incomplete,Table Summary,Info,,Table loaded successfully,info,252,,43419
+Labs,incomplete,Datatype Casting Error,Schema,lab_order_name,Column 'lab_order_name' has type Int32 but can be cast to VARCHAR,high,252,,43419
+Labs,incomplete,Datatype Casting Error,Schema,lab_order_category,Column 'lab_order_category' has type Int32 but can be cast to VARCHAR,high,252,,43419
+Labs,incomplete,Datatype Casting Error,Schema,lab_specimen_name,Column 'lab_specimen_name' has type Int32 but can be cast to VARCHAR,high,252,,43419
+Labs,incomplete,Datatype Casting Error,Schema,lab_specimen_category,Column 'lab_specimen_category' has type Int32 but can be cast to VARCHAR,high,252,,43419
+Labs,incomplete,Datatype Casting Error,Schema,lab_loinc_code,Column 'lab_loinc_code' has type Int32 but can be cast to VARCHAR,high,252,,43419
+Labs,incomplete,Missing Values,Data Quality,lab_order_dttm,"Column 'lab_order_dttm' has 43,419 missing values (100.0%)",high,252,,43419
+Labs,incomplete,Missing Values,Data Quality,lab_value,Column 'lab_value' has 1 missing values (0.0%),low,252,,43419
+Labs,incomplete,Duplicate Check,Other,,"Found 23 duplicate rows out of 43419 total rows based on keys: hospitalization_id, lab_result_dttm, lab_category, lab_specimen_category",medium,252,,43419
+Labs,incomplete,Missing Categorical Values,Categorical,lab_order_category,Column 'lab_order_category' is missing 8 expected category values,medium,252,,43419
+Labs,incomplete,Missing Categorical Values,Categorical,lab_category,Column 'lab_category' is missing 8 expected category values,medium,252,,43419
+Labs,incomplete,Missing Categorical Values,Categorical,lab_specimen_category,Column 'lab_specimen_category' is missing 4 expected category values,medium,252,,43419
+Labs,incomplete,Unit Validation,Other,,"Table 'labs' category 'alkaline_phosphatase' has unexpected units: IU/L, expected: U/L",medium,252,,43419
+Labs,incomplete,Unit Validation,Other,,"Table 'labs' category 'alt' has unexpected units: IU/L, expected: U/L",medium,252,,43419
+Labs,incomplete,Unit Validation,Other,,"Table 'labs' category 'ast' has unexpected units: IU/L, expected: U/L",medium,252,,43419
+Labs,incomplete,Unit Validation,Other,,"Table 'labs' category 'basophils_absolute' has unexpected units: K/uL, expected: 10^3/μL",medium,252,,43419
+Labs,incomplete,Unit Validation,Other,,"Table 'labs' category 'bicarbonate' has unexpected units: mEq/L, expected: mmol/L",medium,252,,43419
+Labs,incomplete,Unit Validation,Other,,"Table 'labs' category 'chloride' has unexpected units: mEq/L, expected: mmol/L",medium,252,,43419
+Labs,incomplete,Unit Validation,Other,,"Table 'labs' category 'esr' has unexpected units: mm/hr, expected: mm/hour",medium,252,,43419
+Labs,incomplete,Unit Validation,Other,,"Table 'labs' category 'ldh' has unexpected units: IU/L, expected: U/L",medium,252,,43419
+Labs,incomplete,Unit Validation,Other,,"Table 'labs' category 'pco2_arterial' has unexpected units: mm Hg, expected: mmHg",medium,252,,43419
+Labs,incomplete,Unit Validation,Other,,"Table 'labs' category 'ph_arterial' has unexpected units: units, expected: (no units)",medium,252,,43419
+Labs,incomplete,Unit Validation,Other,,"Table 'labs' category 'ph_venous' has unexpected units: units, expected: (no units)",medium,252,,43419
+Labs,incomplete,Unit Validation,Other,,"Table 'labs' category 'platelet_count' has unexpected units: K/uL, expected: 10^3/μL",medium,252,,43419
+Labs,incomplete,Unit Validation,Other,,"Table 'labs' category 'potassium' has unexpected units: mEq/L, expected: mmol/L",medium,252,,43419
+Labs,incomplete,Unit Validation,Other,,"Table 'labs' category 'sodium' has unexpected units: mEq/L, expected: mmol/L",medium,252,,43419
+Medication Admin Continuous,incomplete,Table Summary,Info,,Table loaded successfully,info,107,,6810
+Medication Admin Continuous,incomplete,Datatype Casting Error,Schema,med_route_name,Column 'med_route_name' has type float64 but can be cast to VARCHAR,high,107,,6810
+Medication Admin Continuous,incomplete,Datatype Casting Error,Schema,med_route_category,Column 'med_route_category' has type float64 but can be cast to VARCHAR,high,107,,6810
+Medication Admin Continuous,incomplete,Datatype Casting Error,Schema,mar_action_category,Column 'mar_action_category' has type float64 but can be cast to VARCHAR,high,107,,6810
+Medication Admin Continuous,incomplete,Duplicate Check,Other,,"Found 33 duplicate rows out of 6810 total rows based on keys: hospitalization_id, admin_dttm, med_category",medium,107,,6810
+Medication Admin Continuous,incomplete,Missing Categorical Values,Categorical,med_category,Column 'med_category' is missing 48 expected category values,medium,107,,6810
+Medication Admin Continuous,incomplete,Missing Categorical Values,Categorical,med_group,Column 'med_group' is missing 3 expected category values,medium,107,,6810
+Patient,incomplete,Table Summary,Info,,Table loaded successfully,info,,100,100
+Patient,incomplete,Missing Values,Data Quality,birth_date,Column 'birth_date' has 100 missing values (100.0%),high,,100,100
+Patient,incomplete,Missing Values,Data Quality,death_dttm,Column 'death_dttm' has 85 missing values (85.0%),high,,100,100
+Patient,incomplete,Missing Categorical Values,Categorical,race_category,Column 'race_category' is missing 3 expected category values,medium,,100,100
+Patient,incomplete,Missing Categorical Values,Categorical,sex_category,Column 'sex_category' is missing 1 expected category values,medium,,100,100
+Patient Assessments,partial,Table Summary,Info,,Table loaded successfully,info,128,,30803
+Patient Assessments,partial,Duplicate Check,Other,,"Found 17 duplicate rows out of 30803 total rows based on keys: hospitalization_id, recorded_dttm, assessment_category",medium,128,,30803
+Patient Assessments,partial,Missing Categorical Values,Categorical,assessment_category,Column 'assessment_category' is missing 47 expected category values,medium,128,,30803
+Patient Assessments,partial,Missing Categorical Values,Categorical,assessment_group,Column 'assessment_group' is missing 8 expected category values,medium,128,,30803
+Position,complete,Table Summary,Info,,Table loaded successfully,info,128,,4742
+Respiratory Support,incomplete,Table Summary,Info,,Table loaded successfully,info,105,,3232
+Respiratory Support,incomplete,Datatype Casting Error,Schema,tracheostomy,Column 'tracheostomy' has type bool but can be cast to INT,high,105,,3232
+Respiratory Support,incomplete,Missing Values,Data Quality,device_category,Column 'device_category' has 763 missing values (23.6%),medium,105,,3232
+Respiratory Support,incomplete,Missing Categorical Values,Categorical,device_category,Column 'device_category' is missing 2 expected category values,medium,105,,3232
+Respiratory Support,incomplete,Missing Categorical Values,Categorical,mode_category,Column 'mode_category' is missing 2 expected category values,medium,105,,3232
+Vitals,complete,Table Summary,Info,,Table loaded successfully,info,128,,89085
+Vitals,complete,Duplicate Check,Other,,"Found 2108 duplicate rows out of 89085 total rows based on keys: hospitalization_id, recorded_dttm, vital_category",medium,128,,89085
+Vitals,complete,Unknown,Other,,Values below expected minimum for height_cm,medium,128,,89085
+Vitals,complete,Unknown,Other,,Values below expected minimum for map,medium,128,,89085
+Vitals,complete,Unknown,Other,,Values above expected maximum for map,medium,128,,89085
+Vitals,complete,Unknown,Other,,Values below expected minimum for spo2,medium,128,,89085
+Vitals,complete,Unknown,Other,,Values above expected maximum for temp_c,medium,128,,89085
+Vitals,complete,Unknown,Other,,Values below expected minimum for weight_kg,medium,128,,89085

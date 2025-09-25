@@ -1,0 +1,10 @@
+Table_Name,ABC Demo,MIMIC Demo,UCMC Demo
+ADT,incomplete,partial,incomplete
+Hospitalization,partial,partial,partial
+Labs,partial,complete,incomplete
+Medication Admin Continuous,partial,complete,incomplete
+Patient,incomplete,partial,partial
+Patient Assessments,partial,partial,partial
+Position,complete,complete,complete
+Respiratory Support,partial,incomplete,incomplete
+Vitals,complete,partial,incomplete
