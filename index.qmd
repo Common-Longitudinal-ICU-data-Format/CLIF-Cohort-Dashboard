@@ -661,6 +661,8 @@ The unit of measurement for all medications presented here is mcg/kg/min, except
 </div>
 :::
 
+
+
 # Status Tracker
 
 ```{r status-tracker-setup, include=FALSE}
@@ -893,61 +895,56 @@ master_cylinder_html <- paste0(
 htmltools::HTML(master_cylinder_html)
 ```
 
-### Site Progress & Status Matrix {width=80%} 
+### Site Progress & Status Matrix {width=80%}
 ```{=html}
 <style>
-body, html {
-  height: 100vh !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  overflow-x: hidden !important;
+/* Scope styles to Status Tracker tab only */
+.status-tracker-container {
+  height: calc(100vh - 120px);
+  min-height: calc(100vh - 120px);
+  overflow-x: hidden;
 }
 
-.dashboard-page {
-  height: 100vh !important;
-  min-height: 100vh !important;
-}
-
-.bslib-grid {
-  height: 100% !important;
-}
-
-.bslib-card {
+.status-tracker-container .bslib-card {
   height: calc(100vh - 120px) !important;
   min-height: calc(100vh - 120px) !important;
 }
 
-.card-body {
+.status-tracker-container .card-body {
   height: 100% !important;
   padding: 1rem !important;
   display: flex !important;
   flex-direction: column !important;
 }
 
-#consolidated-status-matrix_wrapper {
+.status-tracker-container #consolidated-status-matrix_wrapper {
   height: 100% !important;
   min-height: 100% !important;
   flex: 1 !important;
 }
 
-#consolidated-status-matrix {
+.status-tracker-container #consolidated-status-matrix {
   height: 100% !important;
 }
 
-.dataTables_scrollBody {
-  height: 100% !important;
-  min-height: 100% !important;
+.status-tracker-container .dataTables_scrollBody {
+  height: calc(100vh - 350px) !important;
+  min-height: calc(100vh - 350px) !important;
 }
 
-.dataTables_info,
-.dataTables_paginate,
-.dataTables_filter,
-.dataTables_length,
-input[type="search"],
-.form-control[type="search"] {
+.status-tracker-container .dataTables_info,
+.status-tracker-container .dataTables_paginate,
+.status-tracker-container .dataTables_filter,
+.status-tracker-container .dataTables_length,
+.status-tracker-container input[type="search"],
+.status-tracker-container .form-control[type="search"] {
   display: none !important;
 }
 </style>
+```
+
+```{=html}
+<div class="status-tracker-container">
 ```
 
 ```{r consolidated-status-matrix}
@@ -1129,6 +1126,10 @@ legend_html <- '<div style="margin-top:0.25rem; background:#f8f9fa; border:1px s
 </div>'
 
 htmltools::HTML(legend_html)
+```
+
+```{=html}
+</div>
 ```
 
 
