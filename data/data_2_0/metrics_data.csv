@@ -1,0 +1,481 @@
+﻿Site,Metric,Value,Display_Format
+Consortium Aggregate,Years,2011-2024,text
+Consortium Aggregate,Hospitals ,48,number
+Consortium Aggregate,N: ICU encounters,862400,number
+Consortium Aggregate,N: Unique patients,680158,number
+Consortium Aggregate,Sex n (%): Female,306200 (45.0%),text
+Consortium Aggregate,Race n (%): Black,141142 (20.8%),text
+Consortium Aggregate,Race n (%): White,431473 (63.4%),text
+Consortium Aggregate,Race n (%): Other,107543(15.8%),text
+Consortium Aggregate,Ethnicity n (%): Hispanic,40777 (6.0%),text
+Consortium Aggregate,"Total hospital days, median [Q1,Q3]","6.9 [3.2,13.9]",text
+Consortium Aggregate,"Total ICU days, median [Q1,Q3]","1.6 [0.8,3.1]",text
+Consortium Aggregate,Hospital mortality n (%),119966 (13.9%),text
+Consortium Aggregate,"SOFA-97 TOTAL, median [Q1,Q3]","4.0 [1.0,6.0]",text
+Consortium Aggregate,Vasopressor encounters n (%),317628 (36.8%),text
+Consortium Aggregate,"Phenylephrine dose, median [Q1,Q3]","0.4 [0.1,1.3]",text
+Consortium Aggregate,"Norepinephrine dose, median [Q1,Q3]","0.1 [0.0,0.2]",text
+Consortium Aggregate,"Vasopressin dose, median [Q1,Q3]","0.0 [0.0,0.0]",text
+Consortium Aggregate,"Angiotensin dose, median [Q1,Q3]","0.0 [0.0,0.0]",text
+Consortium Aggregate,"Dopamine dose, median [Q1,Q3]","4.0 [0.5,8.5]",text
+Consortium Aggregate,"Epinephrine dose, median [Q1,Q3]","0.0 [0.0,0.1]",text
+Consortium Aggregate,IMV encounters n (%),306667 (35.6%),text
+Consortium Aggregate,First location of intubation n(%),,
+Consortium Aggregate,ICU,230002 (75.0%),text
+Consortium Aggregate,ED,42526 (13.9%),text
+Consortium Aggregate,Procedural,16986 (5.5%),text
+Consortium Aggregate,Ward,12999 (4.2%),text
+Consortium Aggregate,Other,4154(1.4%),text
+Consortium Aggregate,Initial Mode of IMV n(%),,
+Consortium Aggregate,Assist Control-Volume Control,183708 (59.9%),text
+Consortium Aggregate,Pressure-Regulated Volume Control,39011 (12.7%),text
+Consortium Aggregate,SIMV,32647 (10.6%),text
+Consortium Aggregate,Pressure support/CPAP,21700 (7.1%),text
+Consortium Aggregate,Pressure Control,7651(2.5%),text
+Consortium Aggregate,Volume Support,79 (0.0%),text
+Consortium Aggregate,Other,22046 (7.2%),text
+Consortium Aggregate,"Ventilator settings Median [Q1, Q2]",,
+Consortium Aggregate,Peep,"5.0 [5.0,8.0]",text
+Consortium Aggregate,FiO2,"0.4 [0.3,0.6]",text
+Consortium Aggregate,Respiratory rate,"16.0 [12.0,21.0]",text
+Consortium Aggregate,Tidal Volume,"450.0 [380.0,500.0]",text
+Emory University,Years,2014-2021,text
+Emory University,Hospitals ,4,number
+Emory University,N: ICU encounters,121782,number
+Emory University,N: Unique patients,93718,number
+Emory University,Sex n (%): Female,43236 (46.1%),text
+Emory University,Race n (%): Black,35415 (37.8%),text
+Emory University,Race n (%): White,49086 (52.4%),text
+Emory University,Race n (%): Other,9217(9.8%),text
+Emory University,Ethnicity n (%): Hispanic,2805 (3.0%),text
+Emory University,"Total hospital days, median [Q1,Q3]","7.8 [4.2,13.9]",text
+Emory University,"Total ICU days, median [Q1,Q3]","1.9 [1.0,3.8]",text
+Emory University,Hospital mortality n (%),17824 (14.6%),text
+Emory University,"SOFA-97 TOTAL, median [Q1,Q3]","3.0 [1.0,5.0]",text
+Emory University,Vasopressor encounters n (%),42103.0 (34.6%),text
+Emory University,"Phenylephrine dose, median [Q1,Q3]","0.10 [0.00,0.80]",text
+Emory University,"Norepinephrine dose, median [Q1,Q3]","0.02 [0.00,0.10]",text
+Emory University,"Vasopressin dose, median [Q1,Q3]","0.02 [0.00,0.04]",text
+Emory University,"Angiotensin dose, median [Q1,Q3]","0.01 [0.00,0.03]",text
+Emory University,"Dopamine dose, median [Q1,Q3]","2.00 [0.00,6.39]",text
+Emory University,"Epinephrine dose, median [Q1,Q3]","0.01 [0.00,0.05]",text
+Emory University,IMV encounters n (%),51658 (42.4%),text
+Emory University,First location of intubation n(%),,
+Emory University,ICU,24233 (46.9%),text
+Emory University,ED,10564 (20.4%),text
+Emory University,Procedural,5716 (11.1%),text
+Emory University,Ward,11075 (21.4%),text
+Emory University,Other,70(0.14%),text
+Emory University,Initial Mode of IMV n(%),,
+Emory University,Assist Control-Volume Control,22919 (44.4%),text
+Emory University,Pressure-Regulated Volume Control,6186 (12.0%),text
+Emory University,SIMV,7521 (14.6%),text
+Emory University,Pressure support/CPAP,3134 (6.1%),text
+Emory University,Pressure Control,953 (1.8%),text
+Emory University,Volume Support,,text
+Emory University,Other,10945(21.19%),text
+Emory University,"Ventilator settings Median [Q1, Q2]",,
+Emory University,Peep,"6.00 [5.00,8.00]",text
+Emory University,FiO2,"0.40 [0.30,0.62]",text
+Emory University,Respiratory rate,"16.00 [14.00,20.00]",text
+Emory University,Tidal Volume,"450.00 [380.00,500.00]",text
+Johns Hopkins University,Years,2017-2024,text
+Johns Hopkins University,Hospitals ,5,number
+Johns Hopkins University,N: ICU encounters,104641,number
+Johns Hopkins University,N: Unique patients,85982,number
+Johns Hopkins University,Sex n (%): Female,39692 (46.2%),text
+Johns Hopkins University,Race n (%): Black,24228 (28.2%),text
+Johns Hopkins University,Race n (%): White,51118 (59.5%),text
+Johns Hopkins University,Race n (%): Other,10636(11.3%),text
+Johns Hopkins University,Ethnicity n (%): Hispanic,3864 (4.5%),text
+Johns Hopkins University,"Total hospital days, median [Q1,Q3]","7.3 [3.9,13.8]",text
+Johns Hopkins University,"Total ICU days, median [Q1,Q3]","1.6 [0.9,3.1]",text
+Johns Hopkins University,Hospital mortality n (%),15697 (15.0%),text
+Johns Hopkins University,"SOFA-97 TOTAL, median [Q1,Q3]","4.0 [2.0,7.0]",text
+Johns Hopkins University,Vasopressor encounters n (%),37039.0 (35.4%),text
+Johns Hopkins University,"Phenylephrine dose, median [Q1,Q3]","0.50 [0.12,1.25]",text
+Johns Hopkins University,"Norepinephrine dose, median [Q1,Q3]","0.06 [0.02,0.20]",text
+Johns Hopkins University,"Vasopressin dose, median [Q1,Q3]","0.04 [0.01,0.04]",text
+Johns Hopkins University,"Angiotensin dose, median [Q1,Q3]",,text
+Johns Hopkins University,"Dopamine dose, median [Q1,Q3]","4.00 [1.25,7.75]",text
+Johns Hopkins University,"Epinephrine dose, median [Q1,Q3]","0.03 [0.01,0.07]",text
+Johns Hopkins University,IMV encounters n (%),35197 (33.6%),text
+Johns Hopkins University,First location of intubation n(%),,
+Johns Hopkins University,ICU,28327 (80.5%),text
+Johns Hopkins University,ED,5609 (15.9%),text
+Johns Hopkins University,Procedural,969 (2.8%),text
+Johns Hopkins University,Ward,172 (0.5%),text
+Johns Hopkins University,Other,120(0.34%),text
+Johns Hopkins University,Initial Mode of IMV n(%),,
+Johns Hopkins University,Assist Control-Volume Control,16793 (47.7%),text
+Johns Hopkins University,Pressure-Regulated Volume Control,7814 (22.2%),text
+Johns Hopkins University,SIMV,6645 (18.9%),text
+Johns Hopkins University,Pressure support/CPAP,3173 (9.0%),text
+Johns Hopkins University,Pressure Control,485 (1.4%),text
+Johns Hopkins University,Volume Support,,text
+Johns Hopkins University,Other,287(0.82%),text
+Johns Hopkins University,"Ventilator settings Median [Q1, Q2]",,
+Johns Hopkins University,Peep,"5.00 [5.00,8.00]",text
+Johns Hopkins University,FiO2,"0.40 [0.30,0.60]",text
+Johns Hopkins University,Respiratory rate,"16.00 [15.00,21.00]",text
+Johns Hopkins University,Tidal Volume,"420.00 [375.00,487.50]",text
+Northwestern University,Years,2018-2024,text
+Northwestern University,Hospitals ,8,number
+Northwestern University,N: ICU encounters,105721,number
+Northwestern University,N: Unique patients,85003,number
+Northwestern University,Sex n (%): Female,37862 (44.5%),text
+Northwestern University,Race n (%): Black,10514 (12.4%),text
+Northwestern University,Race n (%): White,62500 (73.5%),text
+Northwestern University,Race n (%): Other,11989(12.8%),text
+Northwestern University,Ethnicity n (%): Hispanic,8043 (9.5%),text
+Northwestern University,"Total hospital days, median [Q1,Q3]","6.2 [3.3,11.8]",text
+Northwestern University,"Total ICU days, median [Q1,Q3]","1.4 [0.8,2.8]",text
+Northwestern University,Hospital mortality n (%),16270 (15.4%),text
+Northwestern University,"SOFA-97 TOTAL, median [Q1,Q3]","4.0 [2.0,6.0]",text
+Northwestern University,Vasopressor encounters n (%),48743.0 (46.1%),text
+Northwestern University,"Phenylephrine dose, median [Q1,Q3]","0.42 [0.10,1.11]",text
+Northwestern University,"Norepinephrine dose, median [Q1,Q3]","0.05 [0.01,0.13]",text
+Northwestern University,"Vasopressin dose, median [Q1,Q3]","0.03 [0.01,0.04]",text
+Northwestern University,"Angiotensin dose, median [Q1,Q3]","0.03 [0.01,0.05]",text
+Northwestern University,"Dopamine dose, median [Q1,Q3]","3.00 [0.50,8.00]",text
+Northwestern University,"Epinephrine dose, median [Q1,Q3]","0.03 [0.01,0.06]",text
+Northwestern University,IMV encounters n (%),32950 (31.2%),text
+Northwestern University,First location of intubation n(%),,
+Northwestern University,ICU,26941 (81.8%),text
+Northwestern University,ED,4458 (13.5%),text
+Northwestern University,Procedural,1213 (3.7%),text
+Northwestern University,Ward,289 (0.9%),text
+Northwestern University,Other,49(0.15%),text
+Northwestern University,Initial Mode of IMV n(%),,
+Northwestern University,Assist Control-Volume Control,23613 (71.7%),text
+Northwestern University,Pressure-Regulated Volume Control,2110 (6.4%),text
+Northwestern University,SIMV,1640 (5.0%),text
+Northwestern University,Pressure support/CPAP,2697 (8.2%),text
+Northwestern University,Pressure Control,1159 (3.5%),text
+Northwestern University,Volume Support,,text
+Northwestern University,Other,1731(5.25%),text
+Northwestern University,"Ventilator settings Median [Q1, Q2]",,
+Northwestern University,Peep,"5.00 [5.00,7.00]",text
+Northwestern University,FiO2,"0.40 [0.30,0.60]",text
+Northwestern University,Respiratory rate,"16.00 [14.00,20.00]",text
+Northwestern University,Tidal Volume,"450.00 [400.00,500.00]",text
+Oregon Health & Science University,Years,2016-2024,text
+Oregon Health & Science University,Hospitals ,2,number
+Oregon Health & Science University,N: ICU encounters,63357,number
+Oregon Health & Science University,N: Unique patients,53527,number
+Oregon Health & Science University,Sex n (%): Female,22053 (41.2%),text
+Oregon Health & Science University,Race n (%): Black,1281 (2.4%),text
+Oregon Health & Science University,Race n (%): White,45191 (84.4%),text
+Oregon Health & Science University,Race n (%): Other,7055(7.5%),text
+Oregon Health & Science University,Ethnicity n (%): Hispanic,3517 (6.6%),text
+Oregon Health & Science University,"Total hospital days, median [Q1,Q3]","6.1 [3.0,11.4]",text
+Oregon Health & Science University,"Total ICU days, median [Q1,Q3]","1.4 [0.8,2.7]",text
+Oregon Health & Science University,Hospital mortality n (%),8202 (12.9%),text
+Oregon Health & Science University,"SOFA-97 TOTAL, median [Q1,Q3]","3.0 [1.0,6.0]",text
+Oregon Health & Science University,Vasopressor encounters n (%),26645.0 (42.1%),text
+Oregon Health & Science University,"Phenylephrine dose, median [Q1,Q3]","0.30 [0.20,0.50]",text
+Oregon Health & Science University,"Norepinephrine dose, median [Q1,Q3]","0.04 [0.02,0.08]",text
+Oregon Health & Science University,"Vasopressin dose, median [Q1,Q3]","0.03 [0.03,0.04]",text
+Oregon Health & Science University,"Angiotensin dose, median [Q1,Q3]",,text
+Oregon Health & Science University,"Dopamine dose, median [Q1,Q3]","5.00 [2.50,7.50]",text
+Oregon Health & Science University,"Epinephrine dose, median [Q1,Q3]","0.03 [0.02,0.06]",text
+Oregon Health & Science University,IMV encounters n (%),20652 (32.6%),text
+Oregon Health & Science University,First location of intubation n(%),,
+Oregon Health & Science University,ICU,18191 (88.1%),text
+Oregon Health & Science University,ED,1611 (7.8%),text
+Oregon Health & Science University,Procedural,754 (3.7%),text
+Oregon Health & Science University,Ward,95 (0.5%),text
+Oregon Health & Science University,Other,1(0%),text
+Oregon Health & Science University,Initial Mode of IMV n(%),,
+Oregon Health & Science University,Assist Control-Volume Control,14618 (70.8%),text
+Oregon Health & Science University,Pressure-Regulated Volume Control,1324 (6.4%),text
+Oregon Health & Science University,SIMV,231 (1.1%),text
+Oregon Health & Science University,Pressure support/CPAP,2652 (12.8%),text
+Oregon Health & Science University,Pressure Control,640 (3.1%),text
+Oregon Health & Science University,Volume Support,34 (0.2%),text
+Oregon Health & Science University,Other,1153(5.58%),text
+Oregon Health & Science University,"Ventilator settings Median [Q1, Q2]",,
+Oregon Health & Science University,Peep,"5.00 [5.00,8.00]",text
+Oregon Health & Science University,FiO2,"0.47 [0.30,0.92]",text
+Oregon Health & Science University,Respiratory rate,"16.00 [14.00,20.00]",text
+Oregon Health & Science University,Tidal Volume,"450.00 [400.00,520.00]",text
+Rush University,Years,2018-2024,text
+Rush University,Hospitals ,1,number
+Rush University,N: ICU encounters,50440,number
+Rush University,N: Unique patients,36637,number
+Rush University,Sex n (%): Female,17449 (47.6%),text
+Rush University,Race n (%): Black,12970 (35.4%),text
+Rush University,Race n (%): White,15697 (42.8%),text
+Rush University,Race n (%): Other,7970(8.5%),text
+Rush University,Ethnicity n (%): Hispanic,6544 (17.9%),text
+Rush University,"Total hospital days, median [Q1,Q3]","6.1 [3.2,11.2]",text
+Rush University,"Total ICU days, median [Q1,Q3]","1.7 [0.9,3.1]",text
+Rush University,Hospital mortality n (%),6152 (12.2%),text
+Rush University,"SOFA-97 TOTAL, median [Q1,Q3]","3.0 [1.0,5.0]",text
+Rush University,Vasopressor encounters n (%),12597.0 (25.0%),text
+Rush University,"Phenylephrine dose, median [Q1,Q3]","0.42 [0.16,1.63]",text
+Rush University,"Norepinephrine dose, median [Q1,Q3]","0.06 [0.02,0.19]",text
+Rush University,"Vasopressin dose, median [Q1,Q3]","0.03 [0.01,0.03]",text
+Rush University,"Angiotensin dose, median [Q1,Q3]",,text
+Rush University,"Dopamine dose, median [Q1,Q3]","5.00 [0.00,7.50]",text
+Rush University,"Epinephrine dose, median [Q1,Q3]","0.02 [0.01,0.06]",text
+Rush University,IMV encounters n (%),12780 (25.3%),text
+Rush University,First location of intubation n(%),,
+Rush University,ICU,11509 (90.1%),text
+Rush University,ED,427 (3.3%),text
+Rush University,Procedural,610 (4.8%),text
+Rush University,Ward,208 (1.6%),text
+Rush University,Other,26(0.2%),text
+Rush University,Initial Mode of IMV n(%),,
+Rush University,Assist Control-Volume Control,836 (6.5%),text
+Rush University,Pressure-Regulated Volume Control,8593 (67.2%),text
+Rush University,SIMV,142 (1.1%),text
+Rush University,Pressure support/CPAP,956 (7.5%),text
+Rush University,Pressure Control,1788 (14.0%),text
+Rush University,Volume Support,,text
+Rush University,Other,465(3.64%),text
+Rush University,"Ventilator settings Median [Q1, Q2]",,
+Rush University,Peep,"8.00 [5.75,8.00]",text
+Rush University,FiO2,"0.40 [0.30,0.60]",text
+Rush University,Respiratory rate,"16.00 [14.00,20.00]",text
+Rush University,Tidal Volume,"400.00 [340.00,460.00]",text
+University of California San Francisco,Years,2011-2024,text
+University of California San Francisco,Hospitals ,6,number
+University of California San Francisco,N: ICU encounters,65750,number
+University of California San Francisco,N: Unique patients,53806,number
+University of California San Francisco,Sex n (%): Female,25305 (47.0%),text
+University of California San Francisco,Race n (%): Black,3876 (7.2%),text
+University of California San Francisco,Race n (%): White,29610 (55.0%),text
+University of California San Francisco,Race n (%): Other,20320(21.7%),text
+University of California San Francisco,Ethnicity n (%): Hispanic,8570 (15.9%),text
+University of California San Francisco,"Total hospital days, median [Q1,Q3]","7.3 [4.1,13.9]",text
+University of California San Francisco,"Total ICU days, median [Q1,Q3]","0.9 [0.4,1.9]",text
+University of California San Francisco,Hospital mortality n (%),6543 (10.0%),text
+University of California San Francisco,"SOFA-97 TOTAL, median [Q1,Q3]","3.0 [1.0,5.0]",text
+University of California San Francisco,Vasopressor encounters n (%),20175.0 (30.7%),text
+University of California San Francisco,"Phenylephrine dose, median [Q1,Q3]","0.48 [0.18,1.16]",text
+University of California San Francisco,"Norepinephrine dose, median [Q1,Q3]","0.06 [0.03,0.15]",text
+University of California San Francisco,"Vasopressin dose, median [Q1,Q3]","0.04 [0.03,0.04]",text
+University of California San Francisco,"Angiotensin dose, median [Q1,Q3]","0.01 [0.01,0.01]",text
+University of California San Francisco,"Dopamine dose, median [Q1,Q3]","4.00 [2.62,5.00]",text
+University of California San Francisco,"Epinephrine dose, median [Q1,Q3]","0.04 [0.02,0.07]",text
+University of California San Francisco,IMV encounters n (%),21314 (32.4%),text
+University of California San Francisco,First location of intubation n(%),,
+University of California San Francisco,ICU,15383 (72.2%),text
+University of California San Francisco,ED,1008 (4.7%),text
+University of California San Francisco,Procedural,2085 (9.8%),text
+University of California San Francisco,Ward,102 (0.5%),text
+University of California San Francisco,Other,2736(12.84%),text
+University of California San Francisco,Initial Mode of IMV n(%),,
+University of California San Francisco,Assist Control-Volume Control,11242 (52.7%),text
+University of California San Francisco,Pressure-Regulated Volume Control,5 (0.0%),text
+University of California San Francisco,SIMV,213 (1.0%),text
+University of California San Francisco,Pressure support/CPAP,4391 (20.6%),text
+University of California San Francisco,Pressure Control,221 (1.0%),text
+University of California San Francisco,Volume Support,1 (0.0%),text
+University of California San Francisco,Other,5241(24.59%),text
+University of California San Francisco,"Ventilator settings Median [Q1, Q2]",,
+University of California San Francisco,Peep,"5.00 [5.00,8.00]",text
+University of California San Francisco,FiO2,"0.40 [0.30,0.70]",text
+University of California San Francisco,Respiratory rate,"16.00 [12.00,22.00]",text
+University of California San Francisco,Tidal Volume,"450.00 [380.00,500.00]",text
+University of Chicago,Years,2019-2024,text
+University of Chicago,Hospitals ,1,number
+University of Chicago,N: ICU encounters,26870,number
+University of Chicago,N: Unique patients,21384,number
+University of Chicago,Sex n (%): Female,9369 (43.8%),text
+University of Chicago,Race n (%): Black,13017 (60.9%),text
+University of Chicago,Race n (%): White,5789 (27.1%),text
+University of Chicago,Race n (%): Other,2578(2.8%),text
+University of Chicago,Ethnicity n (%): Hispanic,1353 (6.3%),text
+University of Chicago,"Total hospital days, median [Q1,Q3]","8.1 [4.3,15.0]",text
+University of Chicago,"Total ICU days, median [Q1,Q3]","1.8 [1.0,3.3]",text
+University of Chicago,Hospital mortality n (%),4227 (15.7%),text
+University of Chicago,"SOFA-97 TOTAL, median [Q1,Q3]","4.0 [2.0,7.0]",text
+University of Chicago,Vasopressor encounters n (%),11510.0 (42.8%),text
+University of Chicago,"Phenylephrine dose, median [Q1,Q3]","0.50 [0.15,1.62]",text
+University of Chicago,"Norepinephrine dose, median [Q1,Q3]","0.08 [0.03,0.24]",text
+University of Chicago,"Vasopressin dose, median [Q1,Q3]","0.03 [0.02,0.04]",text
+University of Chicago,"Angiotensin dose, median [Q1,Q3]","0.02 [0.01,0.04]",text
+University of Chicago,"Dopamine dose, median [Q1,Q3]","3.75 [2.00,8.75]",text
+University of Chicago,"Epinephrine dose, median [Q1,Q3]","0.04 [0.01,0.08]",text
+University of Chicago,IMV encounters n (%),11361 (42.3%),text
+University of Chicago,First location of intubation n(%),,
+University of Chicago,ICU,7868 (69.3%),text
+University of Chicago,ED,3124 (27.5%),text
+University of Chicago,Procedural,247 (2.2%),text
+University of Chicago,Ward,122 (1.1%),text
+University of Chicago,Other,0(0%),text
+University of Chicago,Initial Mode of IMV n(%),,
+University of Chicago,Assist Control-Volume Control,10248 (90.2%),text
+University of Chicago,Pressure-Regulated Volume Control,12 (0.1%),text
+University of Chicago,SIMV,159 (1.4%),text
+University of Chicago,Pressure support/CPAP,486 (4.3%),text
+University of Chicago,Pressure Control,227 (2.0%),text
+University of Chicago,Volume Support,41 (0.4%),text
+University of Chicago,Other,188(1.65%),text
+University of Chicago,"Ventilator settings Median [Q1, Q2]",,
+University of Chicago,Peep,"5.00 [5.00,5.00]",text
+University of Chicago,FiO2,"0.40 [0.40,0.60]",text
+University of Chicago,Respiratory rate,"16.00 [12.00,20.00]",text
+University of Chicago,Tidal Volume,"440.00 [380.00,460.00]",text
+University of Michigan,Years,2018-2024,text
+University of Michigan,Hospitals ,1,number
+University of Michigan,N: ICU encounters,40584,number
+University of Michigan,N: Unique patients,34600,number
+University of Michigan,Sex n (%): Female,14628 (42.3%),text
+University of Michigan,Race n (%): Black,3611 (10.4%),text
+University of Michigan,Race n (%): White,28148 (81.4%),text
+University of Michigan,Race n (%): Other,2841(3%),text
+University of Michigan,Ethnicity n (%): Hispanic,875 (2.5%),text
+University of Michigan,"Total hospital days, median [Q1,Q3]","8.3 [4.5,15.7]",text
+University of Michigan,"Total ICU days, median [Q1,Q3]","1.9 [0.9,3.8]",text
+University of Michigan,Hospital mortality n (%),5918 (14.6%),text
+University of Michigan,"SOFA-97 TOTAL, median [Q1,Q3]","5.0 [2.0,8.0]",text
+University of Michigan,Vasopressor encounters n (%),15865.0 (39.1%),text
+University of Michigan,"Phenylephrine dose, median [Q1,Q3]","0.50 [0.13,1.15]",text
+University of Michigan,"Norepinephrine dose, median [Q1,Q3]","0.05 [0.01,0.13]",text
+University of Michigan,"Vasopressin dose, median [Q1,Q3]","0.03 [0.02,0.06]",text
+University of Michigan,"Angiotensin dose, median [Q1,Q3]","0.02 [0.01,0.04]",text
+University of Michigan,"Dopamine dose, median [Q1,Q3]","3.00 [2.00,5.00]",text
+University of Michigan,"Epinephrine dose, median [Q1,Q3]","0.02 [0.01,0.04]",text
+University of Michigan,IMV encounters n (%),19124 (47.1%),text
+University of Michigan,First location of intubation n(%),,
+University of Michigan,ICU,15505 (81.1%),text
+University of Michigan,ED,3155 (16.5%),text
+University of Michigan,Procedural,129 (0.7%),text
+University of Michigan,Ward,112 (0.6%),text
+University of Michigan,Other,223(1.17%),text
+University of Michigan,Initial Mode of IMV n(%),,
+University of Michigan,Assist Control-Volume Control,5219 (27.3%),text
+University of Michigan,Pressure-Regulated Volume Control,12564 (65.7%),text
+University of Michigan,SIMV,29 (0.2%),text
+University of Michigan,Pressure support/CPAP,214 (1.1%),text
+University of Michigan,Pressure Control,712 (3.7%),text
+University of Michigan,Volume Support,,text
+University of Michigan,Other,386(2.02%),text
+University of Michigan,"Ventilator settings Median [Q1, Q2]",,
+University of Michigan,Peep,"5.00 [5.00,10.00]",text
+University of Michigan,FiO2,"0.40 [0.30,0.70]",text
+University of Michigan,Respiratory rate,"16.00 [14.00,20.00]",text
+University of Michigan,Tidal Volume,"450.00 [365.00,500.00]",text
+University of Minnesota,Years,2017-2024,text
+University of Pennsylvania,Hospitals ,6,number
+University of Pennsylvania,N: ICU encounters,125249,number
+University of Pennsylvania,N: Unique patients,97933,number
+University of Pennsylvania,Sex n (%): Female,43452 (44.4%),text
+University of Pennsylvania,Race n (%): Black,29864 (30.5%),text
+University of Pennsylvania,Race n (%): White,55701 (56.9%),text
+University of Pennsylvania,Race n (%): Other,12368(13.2%),text
+University of Pennsylvania,Ethnicity n (%): Hispanic,3555 (3.6%),text
+University of Pennsylvania,"Total hospital days, median [Q1,Q3]","6.9 [3.6,13.2]",text
+University of Pennsylvania,"Total ICU days, median [Q1,Q3]","1.7 [0.9,3.1]",text
+University of Pennsylvania,Hospital mortality n (%),19403 (15.5%),text
+University of Pennsylvania,"SOFA-97 TOTAL, median [Q1,Q3]","4.0 [2.0,6.0]",text
+University of Pennsylvania,Vasopressor encounters n (%),51131.0 (40.8%),text
+University of Pennsylvania,"Phenylephrine dose, median [Q1,Q3]","0.46 [0.12,1.27]",text
+University of Pennsylvania,"Norepinephrine dose, median [Q1,Q3]","0.05 [0.01,0.13]",text
+University of Pennsylvania,"Vasopressin dose, median [Q1,Q3]","0.03 [0.02,0.04]",text
+University of Pennsylvania,"Angiotensin dose, median [Q1,Q3]",,text
+University of Pennsylvania,"Dopamine dose, median [Q1,Q3]","4.00 [1.50,8.75]",text
+University of Pennsylvania,"Epinephrine dose, median [Q1,Q3]","0.02 [0.01,0.05]",text
+University of Pennsylvania,IMV encounters n (%),46830 (37.4%),text
+University of Pennsylvania,First location of intubation n(%),,
+University of Pennsylvania,ICU,39646 (84.7%),text
+University of Pennsylvania,ED,5103 (10.9%),text
+University of Pennsylvania,Procedural,1054 (2.3%),text
+University of Pennsylvania,Ward,346 (0.7%),text
+University of Pennsylvania,Other,681(1.45%),text
+University of Pennsylvania,Initial Mode of IMV n(%),,
+University of Pennsylvania,Assist Control-Volume Control,29948 (64.0%),text
+University of Pennsylvania,Pressure-Regulated Volume Control,6 (0.0%),text
+University of Pennsylvania,SIMV,13701 (29.3%),text
+University of Pennsylvania,Pressure support/CPAP,2268 (4.8%),text
+University of Pennsylvania,Pressure Control,274 (0.6%),text
+University of Pennsylvania,Volume Support,3 (0.0%),text
+University of Pennsylvania,Other,630(1.35%),text
+University of Pennsylvania,"Ventilator settings Median [Q1, Q2]",,
+University of Pennsylvania,Peep,"5.00 [5.00,8.00]",text
+University of Pennsylvania,FiO2,"0.40 [0.35,0.60]",text
+University of Pennsylvania,Respiratory rate,"19.00 [14.75,25.00]",text
+University of Pennsylvania,Tidal Volume,"450.00 [400.00,500.00]",text
+University of Toronto,Years,2013-2021,text
+University of Toronto,Hospitals ,3,number
+University of Toronto,N: ICU encounters,13259,number
+University of Toronto,N: Unique patients,12658,number
+University of Toronto,Sex n (%): Female,4266 (33.7%),text
+University of Toronto,Race n (%): Black,,text
+University of Toronto,Race n (%): White,,text
+University of Toronto,Race n (%): Other,12658 (100.0%),text
+University of Toronto,Ethnicity n (%): Hispanic,,text
+University of Toronto,"Total hospital days, median [Q1,Q3]","11.0 [6.2,20.1]",text
+University of Toronto,"Total ICU days, median [Q1,Q3]","2.8 [1.2,5.8]",text
+University of Toronto,Hospital mortality n (%),1971 (14.9%),text
+University of Toronto,"SOFA-97 TOTAL, median [Q1,Q3]","4.0 [2.0,6.0]",text
+University of Toronto,Vasopressor encounters n (%),4467.0 (33.7%),text
+University of Toronto,"Phenylephrine dose, median [Q1,Q3]","0.91 [0.20,2.35]",text
+University of Toronto,"Norepinephrine dose, median [Q1,Q3]","0.06 [0.02,0.18]",text
+University of Toronto,"Vasopressin dose, median [Q1,Q3]","0.04 [0.02,0.07]",text
+University of Toronto,"Angiotensin dose, median [Q1,Q3]",,text
+University of Toronto,"Dopamine dose, median [Q1,Q3]","2.00 [1.20,6.00]",text
+University of Toronto,"Epinephrine dose, median [Q1,Q3]","0.04 [0.00,0.07]",text
+University of Toronto,IMV encounters n (%),7869 (59.3%),text
+University of Toronto,First location of intubation n(%),,
+University of Toronto,ICU,4141 (52.6%),text
+University of Toronto,ED,2350 (29.9%),text
+University of Toronto,Procedural,1099 (14.0%),text
+University of Toronto,Ward,172 (2.2%),text
+University of Toronto,Other,107(1.36%),text
+University of Toronto,Initial Mode of IMV n(%),,
+University of Toronto,Assist Control-Volume Control,6626 (84.2%),text
+University of Toronto,Pressure-Regulated Volume Control,,text
+University of Toronto,SIMV,,text
+University of Toronto,Pressure support/CPAP,705 (9.0%),text
+University of Toronto,Pressure Control,538 (6.8%),text
+University of Toronto,Volume Support,,text
+University of Toronto,Other,0 (0%),text
+University of Toronto,"Ventilator settings Median [Q1, Q2]",,
+University of Toronto,Peep,"5.00 [5.00,8.00]",text
+University of Toronto,FiO2,"0.35 [0.25,0.50]",text
+University of Toronto,Respiratory rate,"12.00 [0.00,22.00]",text
+University of Toronto,Tidal Volume,"443.72 [358.33,566.67]",text
+MIMIC IV,Years,2008-2019,text
+MIMIC IV,Hospitals ,1,number
+MIMIC IV,N: ICU encounters,85162,number
+MIMIC IV,N: Unique patients,64954,number
+MIMIC IV,Sex n (%): Female,28130 (43.3%),text
+MIMIC IV,Race n (%): Black,6061 (9.3%),text
+MIMIC IV,Race n (%): White,43795 (67.4%),text
+MIMIC IV,Race n (%): Other,15098(16.1%),text
+MIMIC IV,Ethnicity n (%): Hispanic,2352 (3.6%),text
+MIMIC IV,"Total hospital days, median [Q1,Q3]","7.0 [4.2,12.2]",text
+MIMIC IV,"Total ICU days, median [Q1,Q3]","1.4 [0.8,2.8]",text
+MIMIC IV,Hospital mortality n (%),12073 (14.2%),text
+MIMIC IV,"SOFA-97 TOTAL, median [Q1,Q3]","4.0 [2.0,6.0]",text
+MIMIC IV,Vasopressor encounters n (%),27124.0 (31.8%),text
+MIMIC IV,"Phenylephrine dose, median [Q1,Q3]","0.50 [0.13,1.45]",text
+MIMIC IV,"Norepinephrine dose, median [Q1,Q3]","0.07 [0.02,0.20]",text
+MIMIC IV,"Vasopressin dose, median [Q1,Q3]","0.03 [0.01,0.04]",text
+MIMIC IV,"Angiotensin dose, median [Q1,Q3]","0.03 [0.01,0.04]",text
+MIMIC IV,"Dopamine dose, median [Q1,Q3]","4.01 [1.25,8.50]",text
+MIMIC IV,"Epinephrine dose, median [Q1,Q3]","0.02 [0.01,0.05]",text
+MIMIC IV,IMV encounters n (%),35274 (41.4%),text
+MIMIC IV,First location of intubation n(%),,
+MIMIC IV,ICU,34668 (98.3%),text
+MIMIC IV,ED,48 (0.1%),text
+MIMIC IV,Procedural,157 (0.4%),text
+MIMIC IV,Ward,310 (0.9%),text
+MIMIC IV,Other,91(0.26%),text
+MIMIC IV,Initial Mode of IMV n(%),,
+MIMIC IV,Assist Control-Volume Control,16781 (47.6%),text
+MIMIC IV,Pressure-Regulated Volume Control,13170 (37.3%),text
+MIMIC IV,SIMV,391 (1.1%),text
+MIMIC IV,Pressure support/CPAP,3792 (10.8%),text
+MIMIC IV,Pressure Control,175 (0.5%),text
+MIMIC IV,Volume Support,244 (0.7%),text
+MIMIC IV,Other,721(2.04%),text
+MIMIC IV,"Ventilator settings Median [Q1, Q2]",,
+MIMIC IV,Peep,"5.00 [5.00,8.00]",text
+MIMIC IV,FiO2,"0.45 [0.40,0.62]",text
+MIMIC IV,Respiratory rate,"16.00 [14.00,20.00]",text
+MIMIC IV,Tidal Volume,"450.00 [400.00,500.00]",text
